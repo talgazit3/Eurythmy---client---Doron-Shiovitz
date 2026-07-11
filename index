@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; script-src 'self' 'unsafe-inline'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'; object-src 'none';">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+<meta name="robots" content="index, follow">
+<meta name="description" content="אוריתמיה במרחב העבודה — סדנה חווייתית לצוותים חינוכיים, הנהלות וקהילות ולדורף המחזקת הקשבה, שיתוף פעולה ונוכחות באמצעות תנועה.">
+<title>אוריתמיה במרחב העבודה | דורון רפאל שי</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Assistant:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#f7f1e4;
+    --sand:#e9dcc3;
+    --olive:#7c8a52;
+    --olive-deep:#5f6c3d;
+    --mauve:#a893ab;
+    --mauve-deep:#8a7093;
+    --ink:#3f382c;
+    --ink-soft:#6b6252;
+    --glass:rgba(255,255,255,0.42);
+    --glass-strong:rgba(255,255,255,0.62);
+    --glass-border:rgba(255,255,255,0.65);
+    --radius:26px;
+    --shadow:0 20px 60px -20px rgba(95,80,50,0.35);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Assistant', sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    overflow-x:hidden;
+    line-height:1.7;
+  }
+  h1,h2,h3,.display{
+    font-family:'Frank Ruhl Libre', serif;
+    font-weight:700;
+    letter-spacing:0.2px;
+  }
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+  ul{margin:0; padding:0; list-style:none;}
+  button{font-family:inherit;}
+
+  /* ---------- watercolor background ---------- */
+  .wash{
+    position:fixed;
+    inset:0;
+    z-index:-2;
+    background:var(--cream);
+  }
+  .blob{
+    position:fixed;
+    border-radius:50%;
+    filter:blur(70px);
+    opacity:0.55;
+    z-index:-1;
+    will-change:transform;
+  }
+  .blob.b1{width:56vw;height:56vw;top:-18vw;right:-14vw;background:radial-gradient(circle at 30% 30%, var(--sand), transparent 70%);animation:driftA 34s ease-in-out infinite;}
+  .blob.b2{width:44vw;height:44vw;bottom:-10vw;left:-12vw;background:radial-gradient(circle at 60% 40%, var(--olive), transparent 70%);opacity:0.28;animation:driftB 40s ease-in-out infinite;}
+  .blob.b3{width:38vw;height:38vw;top:35vh;left:30vw;background:radial-gradient(circle at 50% 50%, var(--mauve), transparent 70%);opacity:0.24;animation:driftC 46s ease-in-out infinite;}
+
+  @keyframes driftA{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-3%,4%) scale(1.06);}}
+  @keyframes driftB{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(4%,-3%) scale(1.08);}}
+  @keyframes driftC{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-4%,-4%) scale(1.1);}}
+
+  @media (prefers-reduced-motion: reduce){
+    .blob{animation:none !important;}
+    *{scroll-behavior:auto !important;}
+  }
+
+  .wrap{
+    max-width:1080px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  section{
+    position:relative;
+    padding:88px 0;
+  }
+
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-size:14px;
+    letter-spacing:2.5px;
+    color:var(--olive-deep);
+    text-transform:none;
+    margin-bottom:18px;
+    font-weight:600;
+  }
+  .eyebrow::before{
+    content:"";
+    width:26px;height:1px;
+    background:var(--olive-deep);
+    display:inline-block;
+  }
+
+  .glass{
+    background:var(--glass);
+    backdrop-filter:blur(22px) saturate(140%);
+    -webkit-backdrop-filter:blur(22px) saturate(140%);
+    border:1px solid var(--glass-border);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+  }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:17px 34px;
+    border-radius:100px;
+    background:linear-gradient(135deg, var(--olive), var(--olive-deep));
+    color:#fbf8f0;
+    font-weight:600;
+    font-size:17px;
+    text-decoration:none;
+    border:none;
+    cursor:pointer;
+    box-shadow:0 14px 30px -10px rgba(95,108,61,0.55);
+    transition:transform .35s ease, box-shadow .35s ease;
+  }
+  .btn:hover{transform:translateY(-3px); box-shadow:0 20px 40px -12px rgba(95,108,61,0.6);}
+  .btn:focus-visible, a:focus-visible, button:focus-visible{
+    outline:3px solid var(--mauve-deep);
+    outline-offset:3px;
+  }
+  .btn.ghost{
+    background:var(--glass-strong);
+    color:var(--olive-deep);
+    border:1px solid rgba(124,138,82,0.4);
+    box-shadow:none;
+  }
+
+  /* ---------- reveal on scroll ---------- */
+  .reveal{
+    opacity:0;
+    transform:translateY(26px);
+    transition:opacity .9s ease, transform .9s ease;
+  }
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ================= HERO ================= */
+  .hero{
+    padding-top:64px;
+    min-height:92vh;
+    display:flex;
+    align-items:center;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:56px;
+    align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(34px, 4.6vw, 54px);
+    line-height:1.18;
+    margin:0 0 22px;
+    color:var(--ink);
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--olive-deep);
+  }
+  .hero p.lead{
+    font-size:clamp(17px, 1.6vw, 20px);
+    color:var(--ink-soft);
+    max-width:52ch;
+    margin:0 0 30px;
+  }
+  .qa-row{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin:34px 0;
+  }
+  .qa-card{
+    padding:18px 16px;
+    border-radius:18px;
+  }
+  .qa-card .q{font-size:13px; color:var(--olive-deep); font-weight:700; margin-bottom:6px;}
+  .qa-card .a{font-size:14.5px; color:var(--ink);}
+
+  .hero-visual{
+    position:relative;
+    aspect-ratio:1/1.05;
+    border-radius:32px;
+    overflow:hidden;
+  }
+  .hero-figure{width:100%; height:100%;}
+
+  /* ================= PAIN / CHALLENGE ================= */
+  .challenge{
+    text-align:center;
+  }
+  .challenge h2{font-size:clamp(26px,3.2vw,38px); max-width:16ch; margin:0 auto 12px;}
+  .challenge .sub{color:var(--ink-soft); max-width:60ch; margin:0 auto 46px; font-size:18px;}
+  .pain-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+    text-align:right;
+    margin-bottom:50px;
+  }
+  .pain-card{
+    padding:26px 24px;
+    font-size:16px;
+  }
+  .pivot{
+    font-family:'Frank Ruhl Libre', serif;
+    font-size:clamp(22px,2.6vw,30px);
+    color:var(--olive-deep);
+  }
+
+  /* ================= SOLUTION ================= */
+  .solution-inner{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:48px;
+    align-items:center;
+    padding:56px;
+  }
+  .solution-inner h2{font-size:clamp(26px,3vw,36px); margin:0 0 18px;}
+  .solution-inner p{font-size:17px; color:var(--ink-soft); margin:0 0 16px;}
+  .solution-inner p.emph{color:var(--ink); font-weight:600; font-size:18px;}
+  .ribbon-mini{width:100%; height:auto;}
+
+  /* ================= OUTCOMES ================= */
+  .outcomes h2{text-align:center; font-size:clamp(26px,3.2vw,38px); margin:0 0 12px;}
+  .outcomes .sub{text-align:center; color:var(--ink-soft); max-width:58ch; margin:0 auto 46px; font-size:18px;}
+  .outcome-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+  }
+  .outcome-card{
+    padding:26px 18px;
+    text-align:center;
+  }
+  .outcome-card .icon{
+    width:44px;height:44px;margin:0 auto 14px;
+    color:var(--olive-deep);
+  }
+  .outcome-card span{font-weight:600; font-size:16px;}
+
+  /* ================= AUDIENCE ================= */
+  .audience h2{text-align:center; font-size:clamp(26px,3.2vw,38px); margin:0 0 46px;}
+  .audience-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+  }
+  .audience-card{
+    padding:32px 20px;
+    text-align:center;
+    font-weight:600;
+    font-size:17px;
+  }
+  .audience-card .emoji{font-size:32px; display:block; margin-bottom:14px;}
+
+  /* ================= ABOUT ================= */
+  .about-inner{
+    display:grid;
+    grid-template-columns:0.75fr 1.25fr;
+    gap:48px;
+    align-items:center;
+    padding:56px;
+  }
+  .portrait{
+    aspect-ratio:4/5;
+    border-radius:22px;
+    overflow:hidden;
+  }
+  .about-inner h3{font-size:26px; margin:0 0 4px;}
+  .about-inner .role{color:var(--olive-deep); font-weight:600; margin-bottom:18px; display:block;}
+  .about-inner p{color:var(--ink-soft); font-size:17px;}
+
+  /* ================= PROCESS ================= */
+  .process h2{text-align:center; font-size:clamp(26px,3.2vw,38px); margin:0 0 50px;}
+  .process-row{
+    display:grid;
+    grid-template-columns:1fr auto 1fr auto 1fr;
+    align-items:center;
+    gap:14px;
+  }
+  .process-step{
+    padding:30px 20px;
+    text-align:center;
+  }
+  .process-step .num{
+    font-family:'Frank Ruhl Libre',serif;
+    color:var(--mauve-deep);
+    font-size:15px;
+    letter-spacing:2px;
+    margin-bottom:10px;
+    display:block;
+  }
+  .process-step h4{margin:0 0 8px; font-size:19px; font-family:'Frank Ruhl Libre',serif;}
+  .process-step p{margin:0; color:var(--ink-soft); font-size:15px;}
+  .arrow{
+    color:var(--olive-deep);
+    font-size:22px;
+  }
+
+  /* ================= TESTIMONIALS ================= */
+  .testimonials h2{text-align:center; font-size:clamp(26px,3.2vw,38px); margin:0 0 46px;}
+  .t-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+  }
+  .t-card{
+    padding:30px 26px;
+    font-size:16.5px;
+  }
+  .t-card .mark{font-size:34px; color:var(--mauve-deep); font-family:'Frank Ruhl Libre',serif; line-height:0.5; display:block; margin-bottom:14px;}
+
+  /* ================= CTA ================= */
+  .cta{
+    text-align:center;
+    padding:90px 0 110px;
+  }
+  .cta-inner{
+    padding:64px 40px;
+    max-width:760px;
+    margin:0 auto;
+  }
+  .cta-inner h2{font-size:clamp(28px,3.6vw,42px); margin:0 0 16px;}
+  .cta-inner p{color:var(--ink-soft); font-size:18px; margin:0 0 32px;}
+  .contact-row{
+    display:flex;
+    justify-content:center;
+    gap:26px;
+    margin-top:36px;
+    flex-wrap:wrap;
+  }
+  .contact-row a{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-weight:600;
+    color:var(--olive-deep);
+    text-decoration:none;
+    font-size:15.5px;
+  }
+  .contact-row a:hover{text-decoration:underline;}
+
+  footer{
+    text-align:center;
+    padding:36px 0 50px;
+    color:var(--ink-soft);
+    font-size:14px;
+  }
+
+  /* ================= responsive ================= */
+  @media (max-width:880px){
+    section{padding:64px 0;}
+    .hero{padding-top:48px; min-height:auto;}
+    .hero-grid{grid-template-columns:1fr; gap:36px;}
+    .hero-visual{max-width:340px; margin:0 auto; order:-1;}
+    .qa-row{grid-template-columns:1fr;}
+    .pain-grid{grid-template-columns:1fr;}
+    .solution-inner{grid-template-columns:1fr; padding:36px 26px; gap:28px;}
+    .solution-inner .ribbon-mini{order:-1; max-width:220px; margin:0 auto;}
+    .outcome-grid{grid-template-columns:repeat(2,1fr);}
+    .audience-grid{grid-template-columns:repeat(2,1fr);}
+    .about-inner{grid-template-columns:1fr; padding:32px 26px;}
+    .portrait{max-width:220px; margin:0 auto;}
+    .process-row{grid-template-columns:1fr; gap:6px;}
+    .arrow{transform:rotate(90deg); margin:0 auto;}
+    .t-grid{grid-template-columns:1fr;}
+    .cta-inner{padding:44px 24px;}
+    .contact-row{flex-direction:column; align-items:center; gap:16px;}
+  }
+  @media (max-width:520px){
+    .wrap{padding:0 18px;}
+    .outcome-grid{grid-template-columns:repeat(2,1fr);}
+  }
+</style>
+</head>
+<body>
+
+<div class="wash"></div>
+<div class="blob b1"></div>
+<div class="blob b2"></div>
+<div class="blob b3"></div>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy reveal">
+      <div class="eyebrow">אוריתמיה במרחב העבודה</div>
+      <h1>תנועה, הקשבה ובניית <em>קהילה חינוכית חיה</em></h1>
+      <p class="lead">בקהילה חינוכית בריאה, לא די בחזון משותף. נדרשים גם מפגש חי, אמון ויכולת לנוע יחד — כצוות אחד.</p>
+
+      <div class="qa-row">
+        <div class="qa-card glass">
+          <div class="q">מה זה?</div>
+          <div class="a">סדנת אוריתמיה לצוותים ולקהילות חינוכיות</div>
+        </div>
+        <div class="qa-card glass">
+          <div class="q">למי זה?</div>
+          <div class="a">הנהלות, צוותי חינוך וקהילות ולדורף</div>
+        </div>
+        <div class="qa-card glass">
+          <div class="q">למה זה חשוב?</div>
+          <div class="a">קהילה חיה נבנית מתוך איכות הקשר, לא רק כלים ארגוניים</div>
+        </div>
+      </div>
+
+      <a class="btn" href="#cta">לתיאום שיחת היכרות</a>
+    </div>
+
+    <div class="hero-visual glass reveal">
+      <svg class="hero-figure" viewBox="0 0 400 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="איור של תנועה זורמת המסמלת אוריתמיה">
+        <defs>
+          <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#a893ab" stop-opacity="0.55"/>
+            <stop offset="100%" stop-color="#7c8a52" stop-opacity="0.55"/>
+          </linearGradient>
+          <linearGradient id="g2" x1="0" y1="1" x2="1" y2="0">
+            <stop offset="0%" stop-color="#e9dcc3" stop-opacity="0.9"/>
+            <stop offset="100%" stop-color="#a893ab" stop-opacity="0.35"/>
+          </linearGradient>
+        </defs>
+        <rect width="400" height="420" fill="url(#g2)"/>
+        <g fill="none" stroke="#5f6c3d" stroke-width="2.4" stroke-linecap="round" opacity="0.75">
+          <path d="M60 300 C 120 220, 160 220, 200 150 S 300 90, 340 60">
+            <animate attributeName="d" dur="9s" repeatCount="indefinite"
+              values="M60 300 C 120 220, 160 220, 200 150 S 300 90, 340 60;
+                      M60 290 C 130 240, 150 190, 210 170 S 290 100, 340 70;
+                      M60 300 C 120 220, 160 220, 200 150 S 300 90, 340 60"/>
+          </path>
+        </g>
+        <g fill="none" stroke="url(#g1)" stroke-width="10" stroke-linecap="round" opacity="0.85">
+          <path d="M90 340 C 130 260, 150 260, 190 210">
+            <animate attributeName="d" dur="7s" repeatCount="indefinite"
+              values="M90 340 C 130 260, 150 260, 190 210;
+                      M100 335 C 140 270, 160 250, 200 220;
+                      M90 340 C 130 260, 150 260, 190 210"/>
+          </path>
+          <path d="M190 210 C 230 160, 250 160, 300 110">
+            <animate attributeName="d" dur="7s" repeatCount="indefinite"
+              values="M190 210 C 230 160, 250 160, 300 110;
+                      M200 220 C 240 170, 250 150, 305 120;
+                      M190 210 C 230 160, 250 160, 300 110"/>
+          </path>
+        </g>
+        <circle cx="205" cy="185" r="14" fill="#3f382c" opacity="0.65">
+          <animate attributeName="cy" values="185;178;185" dur="7s" repeatCount="indefinite"/>
+        </circle>
+        <g stroke="#8a7093" stroke-width="1.5" opacity="0.4" fill="none">
+          <circle cx="330" cy="330" r="46"/>
+          <circle cx="70" cy="80" r="30"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="challenge">
+  <div class="wrap">
+    <div class="eyebrow" style="justify-content:center;">גם אצלכם זה נשמע מוכר?</div>
+    <h2 class="reveal">מה שקורה בחדר, לפני שמדברים על פתרונות</h2>
+    <p class="sub reveal">לפני שמסבירים מהי אוריתמיה, כדאי לעצור רגע על מה שהצוות מרגיש בפועל.</p>
+
+    <div class="pain-grid">
+      <div class="pain-card glass reveal">ישיבות שמסתיימות בלי החלטות ברורות.</div>
+      <div class="pain-card glass reveal">עומס ושחיקה בצוות.</div>
+      <div class="pain-card glass reveal">קושי להקשיב באמת זה לזה.</div>
+      <div class="pain-card glass reveal">תחושת "כל אחד לעצמו".</div>
+      <div class="pain-card glass reveal">רצון לבנות תרבות צוותית חיה ומחוברת.</div>
+      <div class="pain-card glass reveal" style="display:flex;align-items:center;justify-content:center;">
+        <span class="pivot">אפשר לעבוד גם אחרת.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="solution">
+  <div class="wrap">
+    <div class="solution-inner glass reveal">
+      <div>
+        <div class="eyebrow">הפתרון</div>
+        <h2>אוריתמיה במרחב העבודה</h2>
+        <p>באמצעות תנועה פשוטה, תרגילים קבוצתיים ושיח מונחה, הסדנה מאפשרת לצוות להתבונן בדפוסי העבודה שלו בדרך חווייתית ומעשית.</p>
+        <p class="emph">המשתתפים אינם רק מדברים על שיתוף פעולה — הם חווים אותו בגוף, במרחב ובמפגש עם האחר.</p>
+      </div>
+      <svg class="ribbon-mini" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="איור תנועה מעגלית">
+        <g fill="none" stroke="#7c8a52" stroke-width="3" stroke-linecap="round" opacity="0.8">
+          <path d="M40 220 C 80 140, 160 260, 200 160 S 260 60, 260 60"/>
+        </g>
+        <g fill="none" stroke="#a893ab" stroke-width="3" stroke-linecap="round" opacity="0.6">
+          <path d="M60 60 C 100 140, 180 40, 220 120 S 250 240, 250 240"/>
+        </g>
+        <circle cx="150" cy="150" r="90" fill="none" stroke="#e9dcc3" stroke-width="1.5" opacity="0.7"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="outcomes">
+  <div class="wrap">
+    <div class="eyebrow" style="justify-content:center;">מה המשתתפים יוצאים איתו</div>
+    <h2 class="reveal">שמונה איכויות שנשארות אחרי הסדנה</h2>
+    <p class="sub reveal">לא כלים תיאורטיים — חוויה שממשיכה להדהד בעבודת הצוות היומיומית.</p>
+    <div class="outcome-grid">
+      <div class="outcome-card glass reveal"><span>הקשבה עמוקה</span></div>
+      <div class="outcome-card glass reveal"><span>אמון בין אנשי הצוות</span></div>
+      <div class="outcome-card glass reveal"><span>גמישות מול שינוי</span></div>
+      <div class="outcome-card glass reveal"><span>תקשורת בריאה</span></div>
+      <div class="outcome-card glass reveal"><span>שיתוף פעולה</span></div>
+      <div class="outcome-card glass reveal"><span>מנהיגות משתפת</span></div>
+      <div class="outcome-card glass reveal"><span>נוכחות</span></div>
+      <div class="outcome-card glass reveal"><span>חיזוק הקהילה</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="audience">
+  <div class="wrap">
+    <h2 class="reveal">למי זה מתאים</h2>
+    <div class="audience-grid">
+      <div class="audience-card glass reveal"><span class="emoji">🏫</span>בתי ספר</div>
+      <div class="audience-card glass reveal"><span class="emoji">🌿</span>גני ילדים</div>
+      <div class="audience-card glass reveal"><span class="emoji">👥</span>הנהלות</div>
+      <div class="audience-card glass reveal"><span class="emoji">🤝</span>צוותי חינוך</div>
+      <div class="audience-card glass reveal"><span class="emoji">🌱</span>קהילות ולדורף</div>
+      <div class="audience-card glass reveal"><span class="emoji">🎓</span>סמינרים להכשרת מורים</div>
+    </div>
+  </div>
+</section>
+
+<section class="about">
+  <div class="wrap">
+    <div class="about-inner glass reveal">
+      <div class="portrait glass" aria-hidden="true">
+        <svg viewBox="0 0 300 375" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" role="img" aria-label="דיוקן מאויר">
+          <rect width="300" height="375" fill="#e9dcc3"/>
+          <circle cx="150" cy="140" r="62" fill="#a893ab" opacity="0.55"/>
+          <path d="M60 375 C 60 260, 110 230, 150 230 C 190 230, 240 260, 240 375 Z" fill="#7c8a52" opacity="0.55"/>
+        </svg>
+      </div>
+      <div>
+        <div class="eyebrow">קצת עליי</div>
+        <h3>דורון רפאל שי</h3>
+        <span class="role">אוריתמיסט, איש חינוך ומנחה קבוצות</span>
+        <p>במשך שנים אני מלווה צוותים וקהילות מתוך גישה הרואה בתנועה כלי לפיתוח הקשבה, שיתוף פעולה וחיזוק המפגש האנושי.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process">
+  <div class="wrap">
+    <h2 class="reveal">איך נראית סדנה</h2>
+    <div class="process-row">
+      <div class="process-step glass reveal">
+        <span class="num">שלב א</span>
+        <h4>היכרות</h4>
+        <p>יצירת קרקע בטוחה למפגש ופתיחת הקשב ההדדי.</p>
+      </div>
+      <div class="arrow">←</div>
+      <div class="process-step glass reveal">
+        <span class="num">שלב ב</span>
+        <h4>תרגילי תנועה משותפים</h4>
+        <p>חוויה גופנית של שיתוף פעולה, קצב ומרחב משותף.</p>
+      </div>
+      <div class="arrow">←</div>
+      <div class="process-step glass reveal">
+        <span class="num">שלב ג</span>
+        <h4>עיבוד והשלכה</h4>
+        <p>חיבור החוויה לעבודת הצוות היומיומית.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="wrap">
+    <h2 class="reveal">המלצות</h2>
+    <div class="t-grid">
+      <div class="t-card glass reveal">
+        <span class="mark">”</span>
+        חוויה שחיברה את כל הצוות בדרך שלא הכרנו.
+      </div>
+      <div class="t-card glass reveal">
+        <span class="mark">”</span>
+        יצאנו עם כלים מעשיים והרבה השראה.
+      </div>
+      <div class="t-card glass reveal">
+        <span class="mark">”</span>
+        המפגש נשאר איתנו הרבה אחרי שהסתיים.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="cta">
+  <div class="wrap">
+    <div class="cta-inner glass reveal">
+      <h2>רוצים להביא את הסדנה לצוות שלכם?</h2>
+      <p>שיחת היכרות קצרה, ללא התחייבות — נתאים יחד את הסדנה לצרכים של הקהילה שלכם.</p>
+      <a class="btn" href="#contact-links">לתיאום שיחת היכרות ללא התחייבות</a>
+
+      <div class="contact-row" id="contact-links">
+        <a href="tel:+972587173350" rel="noopener noreferrer">📞 0587173350</a>
+        <a href="https://wa.me/972587173350" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
+        <a href="mailto:dshayovitz@gmail.com" rel="noopener noreferrer">✉️ dshayovitz@gmail.com</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  דורון רפאל שי — אוריתמיסט ואיש חינוך ולדורף · © <span id="year"></span> | נבנה ע"י TGI webs
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const revealEls = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, {threshold:0.12});
+    revealEls.forEach(el=>io.observe(el));
+  } else {
+    revealEls.forEach(el=>el.classList.add('in'));
+  }
+</script>
+</body>
+</html>
