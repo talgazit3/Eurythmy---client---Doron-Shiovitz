@@ -132,10 +132,6 @@
     transition:transform .35s ease, box-shadow .35s ease;
   }
   .btn:hover{transform:translateY(-3px); box-shadow:0 20px 40px -12px rgba(95,108,61,0.6);}
-  .btn:focus-visible, a:focus-visible, button:focus-visible{
-    outline:3px solid var(--mauve-deep);
-    outline-offset:3px;
-  }
   .btn.ghost{
     background:var(--glass-strong);
     color:var(--olive-deep);
@@ -158,11 +154,10 @@
     display:flex;
     align-items:center;
   }
-    .hero-grid{
+  .hero-grid{
     display:grid;
-    /* נותן לתמונה הרחבה יותר מקום (1.1fr) ולטקסט (0.9fr) כדי שלא תימחץ לגובה */
-    grid-template-columns: 0.9fr 1.1fr; 
-    gap:48px;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:56px;
     align-items:center;
   }
   .hero h1{
@@ -194,9 +189,9 @@
   .qa-card .q{font-size:13px; color:var(--olive-deep); font-weight:700; margin-bottom:6px;}
   .qa-card .a{font-size:14.5px; color:var(--ink);}
 
-    .hero-visual{
+   .hero-visual{
     position:relative;
-    aspect-ratio: 1.5 / 1; /* יחס מושלם של 3:2 ששומר על כל האנשים בפנים בלי לחתוך אף אחד! */
+    aspect-ratio: 1.33 / 1; /* משנה מיחס ריבועי ליחס רוחבי כדי למנוע חיתוך בצדדים */
     border-radius:32px;
     overflow:hidden;
   }
@@ -401,7 +396,7 @@
 <section class="hero">
   <div class="wrap hero-grid">
     <div class="hero-copy reveal">
-     
+      
       <h1><b>אוריתמיה בקהילת העבודה</b></h1>
       <p class="lead">הקשבה - תנועה - בניית קהילה</p>
 
@@ -433,16 +428,16 @@
 
 <section class="challenge">
   <div class="wrap">
-   
+    
     <h2 class="reveal">מה הצוות מרגיש בפועל?</h2>
-   
+    
 
     <div class="pain-grid">
       <div class="pain-card glass reveal">עומס ושחיקה.</div>
       <div class="pain-card glass reveal">קושי להקשיב באמת זה לזה.</div>
       <div class="pain-card glass reveal">תחושת “כל אחד לעצמו”.</div>
       <div class="pain-card glass reveal">רצון לבנות תרבות צוותית חיה ומחוברת.</div>
-     
+      
 
       </div>
     </div>
@@ -453,32 +448,24 @@
   <div class="wrap">
     <div class="solution-inner glass reveal">
       <div>
-       
+        
         <h2>אוריתמיה בקהילת העבודה</h2>
         <p>האוריתמיה מאפשרת לראות את מה שפועל בדרך כלל מתחת לפני השטח: את איכות המפגש, את האיזון בין הובלה והיענות, את היחסים בין היחיד לקהילה ואת הכוחות המבקשים להתפתח בתוך הצוות. מתוך החוויה עולות תובנות מעשיות המלוות את עבודת הצוות גם לאחר הסדנה. תנועה פשוטה, תרגילים קבוצתיים ושיח מונחה, הסדנה מאפשרת לצוות להתבונן בדפוסי העבודה שלו בדרך חווייתית ומעשית.<br><br>המשתתפים אינם רק מדברים על שיתוף פעולה - הם חווים אותו בגוף, במרחב ובמפגש עם האחר.</br> </br></p>
         <p class="emph">אין צורך בניסיון קודם באוריתמיה או בתנועה.</p>
       </div>
-      <svg class="ribbon-mini" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="איור תנועה מעגלית">
-        <g fill="none" stroke="#7c8a52" stroke-width="3" stroke-linecap="round" opacity="0.8">
-          <path d="M40 220 C 80 140, 160 260, 200 160 S 260 60, 260 60"/>
-        </g>
-        <g fill="none" stroke="#a893ab" stroke-width="3" stroke-linecap="round" opacity="0.6">
-          <path d="M60 60 C 100 140, 180 40, 220 120 S 250 240, 250 240"/>
-        </g>
-        <circle cx="150" cy="150" r="90" fill="none" stroke="#e9dcc3" stroke-width="1.5" opacity="0.7"/>
-      </svg>
+      <img class="ribbon-mini" src="imgae 3.jpeg" alt="קבוצת אנשים מבצעת תרגיל אוריתמיה בסדנה" style="width: 100%; max-width: 440px; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius); filter: saturate(110%); box-shadow: var(--shadow);">
     </div>
   </div>
 </section>
 
 <section class="outcomes" style="padding-bottom: 40px;">
   <div class="wrap">
-   
+    
     <h2 class="reveal">במהלך הסדנה נתנסה ב:</h2>
     <div class="glass reveal" style="display: block; width: 100%; max-width: 700px; margin: 0 auto 50px; overflow: hidden; box-shadow: var(--shadow);">
       <img src="image 2.jpeg" alt="תרגיל תנועה קבוצתי" style="width: 100%; height: auto; display: block; border-radius: var(--radius); filter: saturate(110%);">
     </div>
-   
+    
     <div class="outcome-grid">
       <div class="outcome-card glass reveal"><span>הקשבה ונוכחות</span></div>
       <div class="outcome-card glass reveal"><span>יוזמה והובלה</span></div>
@@ -492,7 +479,7 @@
 
 <section class="outcomes">
   <div class="wrap">
-   
+    
     <h2 class="reveal">איכויות שנשארות אחרי הסדנה</h2>
     <p class="sub reveal">חוויה שממשיכה להדהד בעבודת הצוות היומיומית.</p>
     <div class="outcome-grid">
@@ -537,7 +524,7 @@
         <h3>דורון רפאל שי</h3>
         <span class="role">אוריתמיסט, איש חינוך ומנחה קבוצות</span>
         <p>אני מביא שילוב ייחודי של ניסיון חינוכי מעשי, הכשרה אמנותית-תנועתית מעמיקה והבנה אנושית של תהליכי צמיחה והתפתחות. לאורך השנים פעלתי כמחנך בבית ספר ולדורף, גנן, רכז בפנימייה טיפולית, מורה בהכשרת אוריתמיה ומלווה קבוצות חינוכיות טיפוליות.</p>
-        <p>המסע המקצועי שלי עבר דרך לימודי אוריתמיה בשווייץ ובגרמניה, לצד עבודה יומיומית עם ילדים, בני נוער, אנשי חינוך, צוותים וקהילות. שילוב זה מאפשר לי לחבר בין רעיונות חינוכיים עמוקים לבין כלים מעשיים של תנועה, נוכחות והקשבה.
+        <p>המסע המקצועי שלי עבר דרך לימודי אוריתמיה בשווייץ ובגרמניה, לצד עבודה יומיומית עם ילדים, בני נוער, אנשי חינוך, צוותים וקהילות. שילוב זה מאפשר לי לחבר בין רעיונות חינועיים עמוקים לבין כלים מעשיים של תנועה, נוכחות והקשבה.
 </p>
         <p>הייחודיות שלי היא ביכולת ליצור מרחבים שבהם אנשים אינם רק לומדים ידע חדש, אלא פוגשים מחדש את היצירתיות והמשמעות בעשייה שלהם. אני עובד עם צוותים חינוכיים, מוסדות ולדורף, ארגונים וקהילות המבקשים לחזק את החוסן האנושי, את איכות שיתוף הפעולה ואת הקשר בין האדם לבין שליחותו המקצועית.</p>
 
