@@ -158,10 +158,11 @@
     display:flex;
     align-items:center;
   }
-  .hero-grid{
+    .hero-grid{
     display:grid;
-    grid-template-columns:1.15fr 0.85fr;
-    gap:56px;
+    /* נותן לתמונה הרחבה יותר מקום (1.1fr) ולטקסט (0.9fr) כדי שלא תימחץ לגובה */
+    grid-template-columns: 0.9fr 1.1fr; 
+    gap:48px;
     align-items:center;
   }
   .hero h1{
@@ -193,9 +194,9 @@
   .qa-card .q{font-size:13px; color:var(--olive-deep); font-weight:700; margin-bottom:6px;}
   .qa-card .a{font-size:14.5px; color:var(--ink);}
 
-   .hero-visual{
+    .hero-visual{
     position:relative;
-    aspect-ratio: 1.33 / 1; /* משנה מיחס ריבועי ליחס רוחבי כדי למנוע חיתוך בצדדים */
+    aspect-ratio: 1.5 / 1; /* יחס מושלם של 3:2 ששומר על כל האנשים בפנים בלי לחתוך אף אחד! */
     border-radius:32px;
     overflow:hidden;
   }
