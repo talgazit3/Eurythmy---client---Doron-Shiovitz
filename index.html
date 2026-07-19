@@ -585,7 +585,7 @@
       <div>
         
         <h2>אוריתמיה בקהילת העבודה</h2>
-        <p>האוריתמיה מאפשרת לראות את מה שפועל בדרך כלל מתחת לפני השטח: את איכות המפגש, את האיזון בין הובלה והיענות, את היחסים בין היחיד לקהילה ואת הכוחות המבקשים להתפתח בתוך הצוות. מתוך החוויה עולות תובנות מעשיות המלוות את עבודת הצוות גם לאחר הסדנה. תנועה פשוטה, תרגילים קבוצתיים ושיח מונחה, הסדנה מאפשרת לצוות להתבונן בדפוסי העבודה שלו בדרך חווייתית ומעשית.<br><br>המשתתפים אינם רק מדברים על שיתוף פעולה - הם חווים אותו בגוף, במרחב ובמפגש עם האחר.</br> </br></p>
+        <p>האוריתמיה מאפשרת לראות את מה שפועל בדרך כלל מתחת לפני השטח: את איכות המפגש, את האיזון בין הובלה והיענות, את היחסים בין היחיד לקהילה ואת הכוחות המבקשים להתפתח בתוך הצוות. מתוך החוויה עולות תובנות מעשיות המלוות את עבודת הצוות גם לאחר הסדנה. תנועה פשוטה, תרגילים קבוצתיים ושיח מונחה, הסדנה מאפשרת לצוות להתבונן בדפוסי העבודה שלו בדרך חווייתית ומעשית.<br><br>המשתתפים אינם רק מדברים על שיתוף פעולה - הם חווים אותו בגוף, במרחב ובמפגש WITH האחר.</br> </br></p>
         <p class="emph">אין צורך בניסיון קודם באוריתמיה או בתנועה.</p>
       </div>
       <img class="ribbon-mini" src="image3.jpeg" alt="קבוצת אנשים מבצעת תרגיל אוריתמיה בסדנה" style="width: 100%; max-width: 440px; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius); filter: saturate(110%); box-shadow: var(--shadow);">
@@ -661,7 +661,7 @@
         <p>אני מביא שילוב ייחודי של ניסיון חינוכי מעשי, הכשרה אמנותית-תנועתית מעמיקה והבנה אנושית של תהליכי צמיחה והתפתחות. לאורך השנים פעלתי כמחנך בבית ספר ולדורף, גנן, רכז בפנימייה טיפולית, מורה בהכשרת אוריתמיה ומלווה קבוצות חינוכיות טיפוליות.</p>
         <p>המסע המקצועי שלי עבר דרך לימודי אוריתמיה בשווייץ ובגרמניה, לצד עבודה יומיומית WITH ילדים, בני נוער, אנשי חינוך, צוותים וקהילות. שילוב זה מאפשר לי לחבר בין רעיונות חינועיים עמוקים לבין כלים מעשיים של תנועה, נוכחות והקשבה.
 </p>
-        <p>הייחודיות שלי היא ביכולת ליצור מרחבים שבהם אנשים אינם רק לומדים ידע חדש, אלא פוגשים מחדש את היצירתיות והמשמעות בעשייה שלהם. אני עובד עם צוותים חינועיים, מוסדות ולדורף, ארגונים וקהילות המבקשים לחזק את החוסן האנושי, את איכות שיתוף הפעולה ואת הקשר בין האדם לבין שליחותו המקצועית.</p>
+        <p>הייחודיות שלי היא ביכולת ליצור מרחבים שבהם אנשים אינם רק לומדים ידע חדש, אלא פוגשים מחדש את היצירתיות והמשמעות בעשייה שלהם. אני עובד WITH צוותים חינועיים, מוסדות ולדורף, ארגונים וקהילות המבקשים לחזק את החוסן האנושי, את איכות שיתוף הפעולה ואת הקשר בין האדם לבין שליחותו המקצועית.</p>
 
         <p>הסדנאות והליווי שאני מציע נשענים על ניסיון במרחב האנתרופוסופי והחינוכי, ומותאמים לצרכים הייחודיים של כל ארגון, צוות או קהילה. המפגש בין אוריתמיה, חינוך והתפתחות אנושית יוצר תהליך חי, מעשי ועמוק, המאפשר לאנשים ולמערכות לגלות מחדש את מקורות החיוניות וההשראה שלו.</p>
       </div>
@@ -764,16 +764,13 @@
       if (!galleryScroll) return;
       
       const maxScrollLeft = galleryScroll.scrollWidth - galleryScroll.clientWidth;
-      // In RTL layout, scrollLeft can be negative or positive depending on the browser.
-      // A safe way is checking if we reached the end or start.
       if (Math.abs(galleryScroll.scrollLeft) >= maxScrollLeft - 10) {
         galleryScroll.scrollTo({ left: 0, behavior: 'smooth' });
       } else {
-        // Scroll by the size of one item
         const itemWidth = galleryScroll.querySelector('.custom-gallery-item').clientWidth + 20;
         galleryScroll.scrollBy({ left: -itemWidth, behavior: 'smooth' });
       }
-    }, 3000); // Moves every 3 seconds
+    }, 5000); // Moves every 5 seconds (Slowed down from 3s)
   }
 
   function stopAutoScroll() {
@@ -827,7 +824,6 @@
   lightboxContent.addEventListener('touchmove', function(e) {
     let currentY = e.changedTouches[0].screenY;
     let deltaY = currentY - touchStartY;
-    // Visually move the image to give swipe feedback
     lightboxContent.style.transform = `translateY(${deltaY}px)`;
   }, { passive: true });
 
@@ -838,11 +834,9 @@
 
   function handleSwipeGesture() {
     const swipeDistance = Math.abs(touchEndY - touchStartY);
-    // Threshold of 80px to trigger closure
     if (swipeDistance > 80) {
       closeLightbox();
     } else {
-      // Snap back if swipe wasn't long enough
       lightboxContent.style.transform = 'translateY(0)';
     }
   }
