@@ -233,9 +233,10 @@
   }
   .custom-gallery-scroll {
     display: flex;
-    gap: 16px;
+    gap: 20px;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
     padding: 12px 4px 24px 4px;
     scrollbar-width: thin;
     scrollbar-color: var(--olive) transparent;
@@ -252,22 +253,23 @@
     border-radius: 10px;
   }
   .custom-gallery-item {
-    flex: 0 0 280px;
-    scroll-snap-align: start;
+    flex: 0 0 550px;
+    scroll-snap-align: center;
     border-radius: var(--radius);
     overflow: hidden;
     cursor: pointer;
     box-shadow: var(--shadow);
     border: 1px solid var(--glass-border);
     transition: transform 0.3s ease;
+    background: rgba(255, 255, 255, 0.2);
   }
   .custom-gallery-item:hover {
     transform: scale(1.02);
   }
   .custom-gallery-item img {
     width: 100%;
-    height: 200px;
-    object-fit: cover;
+    height: 400px;
+    object-fit: contain;
   }
 
   /* ---------- NEW: LIGHTBOX OVERLAY ---------- */
@@ -488,7 +490,8 @@
     .t-grid{grid-template-columns:1fr;}
     .cta-inner{padding:44px 24px;}
     .contact-row{flex-direction:column; align-items:center; gap:16px;}
-    .custom-gallery-item {flex: 0 0 240px;}
+    .custom-gallery-item {flex: 0 0 85vw;}
+    .custom-gallery-item img {height: 280px;}
   }
   @media (max-width:520px){
     .wrap{padding:0 18px;}
@@ -544,7 +547,7 @@
       
       <!-- LOCATION OF DETECTED BOX REPLACED WITH SLIDER & IMAGES 1,2,3,5,6 (EXCLUDING IMAGE 4) -->
       <div class="custom-gallery-container reveal">
-        <div class="custom-gallery-scroll">
+        <div class="custom-gallery-scroll" id="autoGalleryScroll">
           <div class="custom-gallery-item" onclick="openLightbox('image1.jpeg')">
             <img src="image1.jpeg" alt="סדנת אוריתמיה בתנועה">
           </div>
@@ -752,6 +755,38 @@
     revealEls.forEach(el=>el.classList.add('in'));
   }
 
+  /* ---------- AUTOMATIC GALLERY SCROLL LOGIC ---------- */
+  const galleryScroll = document.getElementById('autoGalleryScroll');
+  let autoScrollInterval;
+
+  function startAutoScroll() {
+    autoScrollInterval = setInterval(() => {
+      if (!galleryScroll) return;
+      
+      const maxScrollLeft = galleryScroll.scrollWidth - galleryScroll.clientWidth;
+      // In RTL layout, scrollLeft can be negative or positive depending on the browser.
+      // A safe way is checking if we reached the end or start.
+      if (Math.abs(galleryScroll.scrollLeft) >= maxScrollLeft - 10) {
+        galleryScroll.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        // Scroll by the size of one item
+        const itemWidth = galleryScroll.querySelector('.custom-gallery-item').clientWidth + 20;
+        galleryScroll.scrollBy({ left: -itemWidth, behavior: 'smooth' });
+      }
+    }, 3000); // Moves every 3 seconds
+  }
+
+  function stopAutoScroll() {
+    clearInterval(autoScrollInterval);
+  }
+
+  // Start automatic scrolling and pause it on hover or touch
+  startAutoScroll();
+  galleryScroll.addEventListener('mouseenter', stopAutoScroll);
+  galleryScroll.addEventListener('mouseleave', startAutoScroll);
+  galleryScroll.addEventListener('touchstart', stopAutoScroll, { passive: true });
+  galleryScroll.addEventListener('touchend', startAutoScroll, { passive: true });
+
   /* ---------- LIGHTBOX LOGIC WITH SWIPE TO CLOSE ---------- */
   const lightbox = document.getElementById('customLightbox');
   const lightboxImg = document.getElementById('lightboxImg');
@@ -761,6 +796,7 @@
   let touchEndY = 0;
 
   function openLightbox(src) {
+    stopAutoScroll();
     lightboxImg.src = src;
     lightbox.classList.add('active');
     document.body.style.overflow = 'hidden'; // Prevent page scroll when open
@@ -769,6 +805,7 @@
   function closeLightbox() {
     lightbox.classList.remove('active');
     document.body.style.overflow = '';
+    startAutoScroll();
     setTimeout(() => {
       lightboxImg.src = '';
       lightboxContent.style.transform = 'translateY(0)';
