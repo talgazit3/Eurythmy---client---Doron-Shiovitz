@@ -11,7 +11,7 @@
 <title>אוריתמיה בקהילת העבודה | דורון רפאל שי</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Assistant:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Assistant:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --cream:#f7f1e4;
@@ -163,16 +163,15 @@
     overflow: hidden;
   }
   /* Background image layer */
-  /* התמונה הנקייה של מסך הפתיחה */
+/* התמונה הנקייה של מסך הפתיחה */
   .hero-bg {
     position: absolute;
     inset: 0;
     background-image: url('image8.jpg'); /* עודכן ל-image8.jpg */
-    background-size: contain; /* שונה מ-cover ל-contain כדי להכניס את כל התמונה ולמנוע חיתוך של אנשים */
-    background-repeat: no-repeat;
+    background-size: cover;
     background-position: center;
     background-attachment: scroll;
-    filter: blur(1px) opacity(0.85); /* מופחת עמימות וטשטוש כדי שראו יותר בבירור את האנשים בתמונה */
+    filter: blur(2px) opacity(0.7); /* טשטוש קל ושקיפות שמתאימה לקריאות הטקסט */
     z-index: 1;
   }
   .hero-content {
@@ -240,11 +239,9 @@
   }
   
   .hero-description-block {
-    font-size: clamp(17px, 2.2vw, 20px);
+    font-size: clamp(17px, 2.2vw, 19px);
     line-height: 1.6;
-    color: #3d3126; /* צבע כהה ומודגש יותר למען קריאות שטח תמונה */
-    font-weight: 700; /* הבולטות של הכתב */
-    text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9), 0 0 10px rgba(255, 255, 255, 0.8); /* הבלטה מעל תמונת הרקע */
+    color: var(--ref-text);
     padding: 0 10px;
   }
   
@@ -257,11 +254,9 @@
   }
   
   .hero-audience-list {
-    font-size: clamp(16px, 2vw, 19px);
+    font-size: clamp(16px, 2vw, 18px);
     line-height: 1.6;
-    color: #3d3126; /* צבע כהה ומודגש יותר למען קריאות שטח תמונה */
-    font-weight: 700; /* הבולטות של הכתב */
-    text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9), 0 0 10px rgba(255, 255, 255, 0.8); /* הבלטה מעל תמונת הרקע */
+    color: var(--ref-text);
     margin-bottom: 40px;
     max-width: 650px;
     margin-left: auto;
@@ -593,7 +588,7 @@
     .hero h1 { font-size: 50px; }
     .hero-title-sep::before, .hero-title-sep::after { width: 50px; }
     .hero .lead { font-size: 18px; margin-bottom: 25px; }
-    .hero-audience-list { font-size: 16px; }
+    .hero-audience-list { font-size: 15px; }
     .hero .btn { font-size: 18px; padding: 15px 35px; }
   }
   @media (max-width:520px){
@@ -781,6 +776,8 @@
   </div>
 </section>
 
+
+
 <section class="process">
   <div class="wrap">
     <h2 class="reveal">איך נראית סדנה</h2>
@@ -947,7 +944,7 @@
 
   function handleSwipeGesture() {
     const swipeDistance = Math.abs(touchEndY - touchStartY);
-    if (swipeDistance > 100) {
+    if (swipeDistance > 80) {
       closeLightbox();
     } else {
       lightboxContent.style.transform = 'translateY(0)';
