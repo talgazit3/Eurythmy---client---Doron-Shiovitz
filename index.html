@@ -298,7 +298,12 @@
   .challenge{
     text-align:center;
   }
-  .challenge h2{font-size:clamp(26px,3.2vw,38px); max-width:16ch; margin:0 auto 12px;}
+  .challenge h2{
+    font-size:clamp(26px,3.2vw,38px); 
+    max-width:16ch; 
+    margin:0 auto 12px;
+    color: var(--ref-olive); /* צבע ירוק תואם לכותרת הראשית */
+  }
   .challenge .sub{color:var(--ink-soft); max-width:60ch; margin:0 auto 46px; font-size:18px;}
   .pain-grid{
     display:grid;
@@ -309,7 +314,9 @@
   }
   .pain-card{
     padding:26px 24px;
-    font-size:18px;
+    font-size:21px; /* הגדלת הגופן לחוויית קריאה ברורה */
+    font-weight:700; /* הדגשת הטקסט */
+    color: #2c251e; /* כהות מודגשת */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -438,7 +445,11 @@
     align-items:center;
     padding:56px;
   }
-  .solution-inner h2{font-size:clamp(26px,3vw,36px); margin:0 0 18px;}
+  .solution-inner h2{
+    font-size:clamp(26px,3vw,36px); 
+    margin:0 0 18px;
+    color: var(--ref-olive); /* צבע ירוק תואם לכותרת הראשית */
+  }
   .solution-inner p{font-size:19px; color:var(--ink-soft); margin:0 0 16px;}
   .solution-inner p.emph{color:var(--ink); font-weight:600; font-size:20px;}
   .ribbon-mini{width:100%; height:auto;}
@@ -575,7 +586,7 @@
   @media (max-width:880px){
     section{padding:64px 0;}
     .pain-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
-    .pain-card { min-height: auto; padding: 20px 16px; font-size: 16px; }
+    .pain-card { min-height: auto; padding: 20px 16px; font-size: 18px; }
     .solution-inner{grid-template-columns:1fr; padding:36px 26px; gap:28px;}
     .solution-inner .ribbon-mini{order:-1; max-width:220px; margin:0 auto;}
     .outcome-grid{grid-template-columns:repeat(2,1fr);}
@@ -945,17 +956,13 @@
 
   lightboxContent.addEventListener('touchend', function(e) {
     touchEndY = e.changedTouches[0].screenY;
-    handleSwipeGesture();
-  }, { passive: true });
-
-  function handleSwipeGesture() {
-    const swipeDistance = Math.abs(touchEndY - touchStartY);
-    if (swipeDistance > 80) {
+    if (Math.abs(touchEndY - touchStartY) > 100) {
       closeLightbox();
     } else {
       lightboxContent.style.transform = 'translateY(0)';
     }
-  }
+  }, { passive: true });
 </script>
+
 </body>
 </html>
