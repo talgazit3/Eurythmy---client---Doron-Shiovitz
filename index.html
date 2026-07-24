@@ -163,16 +163,15 @@
     overflow: hidden;
   }
   /* Background image layer */
-  /* התמונה הנקייה של מסך הפתיחה */
+/* התמונה הנקייה של מסך הפתיחה */
   .hero-bg {
     position: absolute;
     inset: 0;
     background-image: url('image8.jpg'); /* עודכן ל-image8.jpg */
-    background-size: contain; /* שונה מ-cover ל-contain כדי להכניס את כל התמונה ולמנוע חיתוך של אנשים */
-    background-repeat: no-repeat;
+    background-size: cover;
     background-position: center;
     background-attachment: scroll;
-    filter: blur(1px) opacity(0.85); /* מופחת עמימות וטשטוש כדי שראו יותר בבירור את האנשים בתמונה */
+    filter: blur(2px) opacity(0.7); /* טשטוש קל ושקיפות שמתאימה לקריאות הטקסט */
     z-index: 1;
   }
   .hero-content {
@@ -776,6 +775,8 @@
     </div>
   </div>
 </section>
+
+
 
 <section class="process">
   <div class="wrap">
