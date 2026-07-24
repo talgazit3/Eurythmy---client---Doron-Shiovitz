@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; script-src 'self' 'unsafe-inline'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'; object-src 'none';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://img.midjourney.com; script-src 'self' 'unsafe-inline'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'; object-src 'none';">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
 <meta name="robots" content="index, follow">
@@ -27,6 +27,10 @@
     --glass-border:rgba(255,255,255,0.65);
     --radius:26px;
     --shadow:0 20px 60px -20px rgba(95,80,50,0.35);
+    /* Colors from reference image */
+    --ref-olive: #6c7f53;
+    --ref-text: #5d4e42;
+    --ref-bg: #f5f0e6;
   }
 
   *{box-sizing:border-box;}
@@ -147,58 +151,141 @@
   }
   .reveal.in{opacity:1; transform:translateY(0);}
 
-  /* ================= HERO ================= */
+  /* ================= NEW HERO STYLE (IMAGE 0.PNG) ================= */
   .hero{
-    padding-top:88px;
-    padding-bottom:88px;
-    min-height:95vh;
+    padding: 0;
+    min-height:100vh;
     display:flex;
     align-items:center;
-    background-image: linear-gradient(rgba(247, 241, 228, 0.4), rgba(247, 241, 228, 0.4)), url('image4.jpeg');
+    justify-content: center;
+    background-color: var(--ref-bg);
+    position: relative;
+    overflow: hidden;
+  }
+  /* Background image layer */
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('image_0.png');
     background-size: cover;
     background-position: center;
     background-attachment: scroll;
+    filter: blur(3px) opacity(0.6); /* Soft blur and transparency like the ref */
+    z-index: 1;
   }
-  .hero-grid{
-    display:block;
-    width:100%;
-  }
-  .hero-copy {
-    max-width: 800px;
+  .hero-content {
+    position: relative;
+    z-index: 2; /* above the background image */
+    max-width: 900px;
+    width: 100%;
     margin: 0 auto;
+    padding: 80px 24px;
+    text-align: center;
+    color: var(--ref-text);
+  }
+  
+  .hero h1 {
+    font-size: clamp(48px, 8vw, 90px); /* Very large title */
+    color: var(--ref-olive);
+    font-weight: 700;
+    margin: 0 0 10px;
+    line-height: 1;
+  }
+  
+  /* Decorative leaf element below H1 */
+  .hero-title-sep {
+    display: block;
+    width: 100%;
+    height: 40px;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20" preserveAspectRatio="none"><path d="M0,10 Q25,0 50,10 T100,10" stroke="%236c7f53" stroke-width="0.5" fill="none"/><circle cx="50" cy="10" r="1.5" fill="%236c7f53"/></svg>');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-bottom: 30px;
+  }
+  /* Fallback if SVG is complex - use simple visual separator */
+  .hero-title-sep::before, .hero-title-sep::after {
+      content: '';
+      display: inline-block;
+      width: clamp(80px, 15vw, 150px);
+      height: 1px;
+      background-color: var(--ref-olive);
+      vertical-align: middle;
+  }
+  .hero-title-sep .leaf-icon {
+      display: inline-block;
+      margin: 0 15px;
+      font-size: 20px;
+      color: var(--ref-olive);
+      vertical-align: middle;
+  }
+
+  .hero .lead {
+    font-size: clamp(20px, 3.5vw, 28px);
+    font-weight: 600;
+    margin: 0 0 40px;
+    color: var(--ref-text);
+  }
+  
+  /* Grid for the central text blocks */
+  .hero-description-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 700px;
+    margin: 0 auto 50px;
     text-align: center;
   }
-  .hero h1{
-    font-size:clamp(36px, 5vw, 58px);
-    line-height:1.18;
-    margin:0 0 22px;
-    color:var(--ink);
+  
+  .hero-description-block {
+    font-size: clamp(17px, 2.2vw, 19px);
+    line-height: 1.6;
+    color: var(--ref-text);
+    padding: 0 10px;
   }
-  .hero h1 em{
-    font-style:normal;
-    color:var(--olive-deep);
+  
+  /* Section "For whom is it intended?" */
+  .hero-audience-label {
+    font-size: clamp(18px, 2.5vw, 22px);
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--ref-text);
   }
-  .hero p.lead{
-    font-size:clamp(18px, 2vw, 22px);
-    color:var(--ink-soft);
-    max-width:100%;
-    margin:0 0 38px;
-    font-weight: 500;
+  
+  .hero-audience-list {
+    font-size: clamp(16px, 2vw, 18px);
+    line-height: 1.6;
+    color: var(--ref-text);
+    margin-bottom: 40px;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
   }
-  .qa-row{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:16px;
-    margin:44px 0;
-    text-align: right;
+  
+  /* Refined button style to match image 0.PNG */
+  .hero .btn {
+    background: var(--ref-olive);
+    color: white;
+    font-family: 'Assistant', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    padding: 18px 45px;
+    border-radius: 50px;
+    box-shadow: 0 8px 20px rgba(108, 127, 83, 0.3);
+    gap: 12px;
   }
-  .qa-card{
-    padding:22px 20px;
-    border-radius:18px;
-    background: rgba(255, 255, 255, 0.65);
+  
+  .hero .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(108, 127, 83, 0.4);
   }
-  .qa-card .q{font-size:15px; color:var(--olive-deep); font-weight:700; margin-bottom:8px;}
-  .qa-card .a{font-size:17px; color:var(--ink); line-height: 1.6;}
+  
+  .hero .btn-leaf-icon {
+    font-size: 1.2em;
+    opacity: 0.9;
+  }
+
+  /* ================= /END NEW HERO STYLE ================= */
 
   /* ================= PAIN / CHALLENGE ================= */
   .challenge{
@@ -470,15 +557,12 @@
     padding:36px 0 50px;
     color:var(--ink-soft);
     font-size:14px;
+    background-color: var(--ref-bg);
   }
 
   /* ================= responsive ================= */
   @media (max-width:880px){
     section{padding:64px 0;}
-    .hero{padding-top:64px; min-height:auto;}
-    .hero-grid{grid-template-columns:1fr; gap:36px;}
-    .qa-row{grid-template-columns:1fr;}
-    .pain-grid{grid-template-columns:1fr;}
     .solution-inner{grid-template-columns:1fr; padding:36px 26px; gap:28px;}
     .solution-inner .ribbon-mini{order:-1; max-width:220px; margin:0 auto;}
     .outcome-grid{grid-template-columns:repeat(2,1fr);}
@@ -492,6 +576,13 @@
     .contact-row{flex-direction:column; align-items:center; gap:16px;}
     .custom-gallery-item {flex: 0 0 85vw;}
     .custom-gallery-item img {height: 280px;}
+    
+    /* Hero mobile tweaks */
+    .hero h1 { font-size: 50px; }
+    .hero-title-sep::before, .hero-title-sep::after { width: 50px; }
+    .hero .lead { font-size: 18px; margin-bottom: 25px; }
+    .hero-audience-list { font-size: 15px; }
+    .hero .btn { font-size: 18px; padding: 15px 35px; }
   }
   @media (max-width:520px){
     .wrap{padding:0 18px;}
@@ -506,29 +597,48 @@
 <div class="blob b2"></div>
 <div class="blob b3"></div>
 
+<!-- NEW HERO SECTION REPLACED HERE TO MATCH IMAGE 0.PNG -->
 <section class="hero">
-  <div class="wrap hero-grid">
-    <div class="hero-copy reveal">
-      
-      <h1><b>אוריתמיה בקהילת העבודה</b></h1>
-      <p class="lead">טיפוח הצוות והחוסן בקהילה</p>
-
-      <div class="qa-row">
-        <div class="qa-card glass">
-         
-          <div class="a">סדנאות אוריתמיה לבתי ספר ולדורף ולקהילות חינוכיות טיפוליות, המבקשות לטפח קשרים חברתיים, להעמיק את חיי הקהילה ולחזק את עבודת הצוות מתוך חוויה משותפת.</div>
-        </div>
-        <div class="qa-card glass">
-          
-          <div class="a">דרך התנועה המשותפת נוצרים מרחבים של מפגש אנושי, אחריות הדדית ותחושת שייכות – יסודות הכרחיים לקהילה חינוכית בריאה ומתפתחת.</div>
-        </div>
-        
-</div>
-
-      <a class="btn" href="#cta">לתיאום שיחת היכרות</a>
+  <div class="hero-bg"></div>
+  <div class="hero-content reveal">
+    
+    <h1>אוריתמיה בקהילת העבודה</h1>
+    
+    <!-- Title Separator with Leaf -->
+    <div class="hero-title-sep">
+        <span class="leaf-icon">🍃</span>
     </div>
+    
+    <p class="lead">טיפוח הצוות והחוסן בקהילה</p>
+    
+    <!-- Original text blocks rearranged in a grid like ref -->
+    <div class="hero-description-grid">
+        <div class="hero-description-block">
+            סדנאות אוריתמיה לבתי ספר ולדורף ולקהילות חינוכיות טיפוליות, המבקשות לטפח קשרים חברתיים, להעמיק את חיי הקהילה ולחזק את עבודת הצוות מתוך חוויה משותפת.
+        </div>
+        <div class="hero-description-block">
+            דרך התנועה המשותפת נוצרים מרחבים של מפגש אנושי, אחריות הדדית ותחושת שייכות – יסודות הכרחיים לקהילה חינוכית בריאה ומתפתחת.
+        </div>
+    </div>
+    
+    <!-- Audience Label -->
+    <div class="hero-audience-label">למי מיועדים המפגשים?</div>
+    
+    <!-- Reusing original lead content but formatted like the reference image list -->
+    <div class="hero-audience-list">
+        בתי ספר ולדורף • צוותי חינוך • הנהלות • קהילות חינוכיות • <br>
+        קבוצות המבקשות לטפח את איכות המפגש האנושי בתוכן.
+    </div>
+    
+    <!-- Original button with new style and leaf icon -->
+    <a class="btn" href="#cta">
+        לתיאום שיחת היכרות
+        <span class="btn-leaf-icon">🍃</span>
+    </a>
+    
   </div>
 </section>
+<!-- END OF NEW HERO SECTION -->
 
 <section class="challenge">
   <div class="wrap">
@@ -711,7 +821,10 @@
     <div class="cta-inner glass reveal">
       <h2>רוצים להביא את הסדנה לצוות שלכם?</h2>
       <p>שיחת היכרות קצרה, ללא התחייבות — נתאים יחד את הסדנה לצרכים של הקהילה שלכם.</p>
-      <a class="btn" href="#contact-links">לתיאום שיחת היכרות ללא התחייבות</a>
+      <a class="btn" href="#contact-links">
+        לתיאום שיחת היכרות ללא התחייבות
+        <span class="btn-leaf-icon">🍃</span>
+      </a>
 
       <div class="contact-row" id="contact-links">
         <a href="tel:+972587173350" rel="noopener noreferrer">📞 0587173350</a>
