@@ -13,606 +13,651 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@400;500;700;900&family=Assistant:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --cream:#f7f1e4;
-    --sand:#e9dcc3;
-    --olive:#7c8a52;
-    --olive-deep:#5f6c3d;
-    --mauve:#a893ab;
-    --mauve-deep:#8a7093;
-    --ink:#3f382c;
-    --ink-soft:#6b6252;
-    --glass:rgba(255,255,255,0.42);
-    --glass-strong:rgba(255,255,255,0.62);
-    --glass-border:rgba(255,255,255,0.65);
-    --radius:26px;
-    --shadow:0 20px 60px -20px rgba(95,80,50,0.35);
-    /* Colors from reference image */
-    --ref-olive: #6c7f53;
-    --ref-text: #5d4e42;
-    --ref-bg: #f5f0e6;
-  }
+:root{
+  --cream:#f7f1e4;
+  --sand:#e9dcc3;
+  --olive:#7c8a52;
+  --olive-deep:#5f6c3d;
+  --mauve:#a893ab;
+  --mauve-deep:#8a7093;
+  --ink:#3f382c;
+  --ink-soft:#6b6252;
+  --glass:rgba(255,255,255,0.42);
+  --glass-strong:rgba(255,255,255,0.62);
+  --glass-border:rgba(255,255,255,0.65);
+  --radius:26px;
+  --shadow:0 20px 60px -20px rgba(95,80,50,0.35);
 
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    font-family:'Assistant', sans-serif;
-    color:var(--ink);
-    background:var(--cream);
-    overflow-x:hidden;
-    line-height:1.7;
-  }
-  h1,h2,h3,.display{
-    font-family:'Frank Ruhl Libre', serif;
-    font-weight:700;
-    letter-spacing:0.2px;
-  }
-  a{color:inherit;}
-  img{max-width:100%; display:block;}
-  ul{margin:0; padding:0; list-style:none;}
-  button{font-family:inherit;}
+  /* Colors from reference image */
+  --ref-olive: #6c7f53;
+  --ref-text: #5d4e42;
+  --ref-bg: #f5f0e6;
+}
 
-  /* ---------- watercolor background ---------- */
-  .wash{
-    position:fixed;
-    inset:0;
-    z-index:-2;
-    background:var(--cream);
-  }
-  .blob{
-    position:fixed;
-    border-radius:50%;
-    filter:blur(70px);
-    opacity:0.55;
-    z-index:-1;
-    will-change:transform;
-  }
-  .blob.b1{width:56vw;height:56vw;top:-18vw;right:-14vw;background:radial-gradient(circle at 30% 30%, var(--sand), transparent 70%);animation:driftA 34s ease-in-out infinite;}
-  .blob.b2{width:44vw;height:44vw;bottom:-10vw;left:-12vw;background:radial-gradient(circle at 60% 40%, var(--olive), transparent 70%);opacity:0.28;animation:driftB 40s ease-in-out infinite;}
-  .blob.b3{width:38vw;height:38vw;top:35vh;left:30vw;background:radial-gradient(circle at 50% 50%, var(--mauve), transparent 70%);opacity:0.24;animation:driftC 46s ease-in-out infinite;}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  font-family:'Assistant', sans-serif;
+  color:var(--ink);
+  background:var(--cream);
+  overflow-x:hidden;
+  line-height:1.7;
+}
 
-  @keyframes driftA{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-3%,4%) scale(1.06);}}
-  @keyframes driftB{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(4%,-3%) scale(1.08);}}
-  @keyframes driftC{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-4%,-4%) scale(1.1);}}
+h1,h2,h3,.display{
+  font-family:'Frank Ruhl Libre', serif;
+  font-weight:700;
+  letter-spacing:0.2px;
+}
 
-  @media (prefers-reduced-motion: reduce){
-    .blob{animation:none !important;}
-    *{scroll-behavior:auto !important;}
-  }
+a{color:inherit;}
+img{max-width:100%; display:block;}
+ul{margin:0; padding:0; list-style:none;}
+button{font-family:inherit;}
 
-  .wrap{
-    max-width:1080px;
-    margin:0 auto;
-    padding:0 24px;
-  }
+/* ---------- watercolor background ---------- */
+.wash{
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  background:var(--cream);
+}
+.blob{
+  position:fixed;
+  border-radius:50%;
+  filter:blur(70px);
+  opacity:0.55;
+  z-index:-1;
+  will-change:transform;
+}
+.blob.b1{width:56vw;height:56vw;top:-18vw;right:-14vw;background:radial-gradient(circle at 30% 30%, var(--sand), transparent 70%);animation:driftA 34s ease-in-out infinite;}
+.blob.b2{width:44vw;height:44vw;bottom:-10vw;left:-12vw;background:radial-gradient(circle at 60% 40%, var(--olive), transparent 70%);opacity:0.28;animation:driftB 40s ease-in-out infinite;}
+.blob.b3{width:38vw;height:38vw;top:35vh;left:30vw;background:radial-gradient(circle at 50% 50%, var(--mauve), transparent 70%);opacity:0.24;animation:driftC 46s ease-in-out infinite;}
 
-  section{
-    position:relative;
-    padding:88px 0;
-  }
+@keyframes driftA{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-3%,4%) scale(1.06);}}
+@keyframes driftB{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(4%,-3%) scale(1.08);}}
+@keyframes driftC{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-4%,-4%) scale(1.1);}}
 
-  .eyebrow{
-    display:inline-flex;
-    align-items:center;
-    gap:10px;
-    font-size:14px;
-    letter-spacing:2.5px;
-    color:var(--olive-deep);
-    text-transform:none;
-    margin-bottom:18px;
-    font-weight:600;
-  }
-  .eyebrow::before{
-    content:"";
-    width:26px;height:1px;
-    background:var(--olive-deep);
-    display:inline-block;
-  }
+@media (prefers-reduced-motion: reduce){
+  .blob{animation:none !important;}
+  *{scroll-behavior:auto !important;}
+}
 
-  .glass{
-    background:var(--glass);
-    backdrop-filter:blur(22px) saturate(140%);
-    -webkit-backdrop-filter:blur(22px) saturate(140%);
-    border:1px solid var(--glass-border);
-    border-radius:var(--radius);
-    box-shadow:var(--shadow);
-  }
+.wrap{
+  max-width:1080px;
+  margin:0 auto;
+  padding:0 24px;
+}
 
-  .btn{
-    display:inline-flex;
-    align-items:center;
-    gap:10px;
-    padding:17px 34px;
-    border-radius:100px;
-    background:linear-gradient(135deg, var(--olive), var(--olive-deep));
-    color:#fbf8f0;
-    font-weight:600;
-    font-size:17px;
-    text-decoration:none;
-    border:none;
-    cursor:pointer;
-    box-shadow:0 14px 30px -10px rgba(95,108,61,0.55);
-    transition:transform .35s ease, box-shadow .35s ease;
-  }
-  .btn:hover{transform:translateY(-3px); box-shadow:0 20px 40px -12px rgba(95,108,61,0.6);}
-  .btn.ghost{
-    background:var(--glass-strong);
-    color:var(--olive-deep);
-    border:1px solid rgba(124,138,82,0.4);
-    box-shadow:none;
-  }
+section{
+  position:relative;
+  padding:88px 0;
+}
 
-  /* ---------- reveal on scroll ---------- */
-  .reveal{
-    opacity:0;
-    transform:translateY(26px);
-    transition:opacity .9s ease, transform .9s ease;
-  }
-  .reveal.in{opacity:1; transform:translateY(0);}
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  font-size:14px;
+  letter-spacing:2.5px;
+  color:var(--olive-deep);
+  text-transform:none;
+  margin-bottom:18px;
+  font-weight:600;
+}
+.eyebrow::before{
+  content:"";
+  width:26px;height:1px;
+  background:var(--olive-deep);
+  display:inline-block;
+}
 
-  /* ================= NEW HERO STYLE (IMAGE 0.PNG) ================= */
-  .hero{
-    padding: 0;
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content: center;
-    background-color: var(--ref-bg);
-    position: relative;
-    overflow: hidden;
-  }
-  /* Background image layer */
+.glass{
+  background:var(--glass);
+  backdrop-filter:blur(22px) saturate(140%);
+  -webkit-backdrop-filter:blur(22px) saturate(140%);
+  border:1px solid var(--glass-border);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:17px 34px;
+  border-radius:100px;
+  background:linear-gradient(135deg, var(--olive), var(--olive-deep));
+  color:#fbf8f0;
+  font-weight:600;
+  font-size:17px;
+  text-decoration:none;
+  border:none;
+  cursor:pointer;
+  box-shadow:0 14px 30px -10px rgba(95,108,61,0.55);
+  transition:transform .35s ease, box-shadow .35s ease;
+}
+.btn:hover{transform:translateY(-3px); box-shadow:0 20px 40px -12px rgba(95,108,61,0.6);}
+.btn.ghost{
+  background:var(--glass-strong);
+  color:var(--olive-deep);
+  border:1px solid rgba(124,138,82,0.4);
+  box-shadow:none;
+}
+
+/* ---------- reveal on scroll ---------- */
+.reveal{
+  opacity:0;
+  transform:translateY(26px);
+  transition:opacity .9s ease, transform .9s ease;
+}
+.reveal.in{opacity:1; transform:translateY(0);}
+
+/* ================= NEW HERO STYLE (IMAGE 0.PNG) ================= */
+.hero{
+  padding: 0;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content: center;
+  background-color: var(--ref-bg);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background image layer */
 /* התמונה הנקייה של מסך הפתיחה */
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    background-image: url('image8.jpg'); /* עודכן ל-image8.jpg */
-    background-size: cover;
-    background-position: center;
-    background-attachment: scroll;
-    filter: blur(2px) opacity(0.7); /* טשטוש קל ושקיפות שמתאימה לקריאות הטקסט */
-    z-index: 1;
-  }
-  .hero-content {
-    position: relative;
-    z-index: 2; /* above the background image */
-    max-width: 900px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 80px 24px;
-    text-align: center;
-    color: var(--ref-text);
-  }
-  
-  .hero h1 {
-    font-size: clamp(48px, 8vw, 90px); /* Very large title */
-    color: var(--ref-olive);
-    font-weight: 700;
-    margin: 0 0 10px;
-    line-height: 1;
-  }
-  
-  /* Decorative leaf element below H1 */
-  .hero-title-sep {
-    display: block;
-    width: 100%;
-    height: 40px;
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20" preserveAspectRatio="none"><path d="M0,10 Q25,0 50,10 T100,10" stroke="%236c7f53" stroke-width="0.5" fill="none"/><circle cx="50" cy="10" r="1.5" fill="%236c7f53"/></svg>');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    margin-bottom: 30px;
-  }
-  /* Fallback if SVG is complex - use simple visual separator */
-  .hero-title-sep::before, .hero-title-sep::after {
-      content: '';
-      display: inline-block;
-      width: clamp(80px, 15vw, 150px);
-      height: 1px;
-      background-color: var(--ref-olive);
-      vertical-align: middle;
-  }
-  .hero-title-sep .leaf-icon {
-      display: inline-block;
-      margin: 0 15px;
-      font-size: 20px;
-      color: var(--ref-olive);
-      vertical-align: middle;
-  }
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('image8.jpg'); /* עודכן ל-image8.jpg */
+  background-size: cover;
+  background-position: center;
+  background-attachment: scroll;
+  filter: blur(2px) opacity(0.7); /* טשטוש קל ושקיפות שמתאימה לקריאות הטקסט */
+  z-index: 1;
+}
 
-  .hero .lead {
-    font-size: clamp(20px, 3.5vw, 28px);
-    font-weight: 700;
-    margin: 0 0 40px;
-    color: var(--ref-olive);
-    text-shadow: 0 1px 3px rgba(255,255,255,0.8);
+.hero-content {
+  position: relative;
+  z-index: 2; /* above the background image */
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 80px 24px;
+  text-align: center;
+  color: var(--ref-text);
+}
+
+.hero h1 {
+  font-size: clamp(48px, 8vw, 90px); /* Very large title */
+  color: var(--ref-olive);
+  font-weight: 700;
+  margin: 0 0 10px;
+  line-height: 1;
+}
+
+/* Decorative leaf element below H1 */
+.hero-title-sep {
+  display: block;
+  width: 100%;
+  height: 40px;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20" preserveAspectRatio="none"><path d="M0,10 Q25,0 50,10 T100,10" stroke="%236c7f53" stroke-width="0.5" fill="none"/><circle cx="50" cy="10" r="1.5" fill="%236c7f53"/></svg>');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-bottom: 30px;
+}
+
+/* Fallback if SVG is complex - use simple visual separator */
+.hero-title-sep::before,
+.hero-title-sep::after {
+  content: '';
+  display: inline-block;
+  width: clamp(80px, 15vw, 150px);
+  height: 1px;
+  background-color: var(--ref-olive);
+  vertical-align: middle;
+}
+
+.hero-title-sep .leaf-icon {
+  display: inline-block;
+  margin: 0 15px;
+  font-size: 20px;
+  color: var(--ref-olive);
+  vertical-align: middle;
+}
+
+.hero .lead {
+  font-size: clamp(20px, 3.5vw, 28px);
+  font-weight: 700;
+  margin: 0 0 40px;
+  color: var(--ref-olive);
+  text-shadow: 0 1px 3px rgba(255,255,255,0.8);
+}
+
+/* Grid for the central text blocks */
+.hero-description-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  max-width: 700px;
+  margin: 0 auto 50px;
+  text-align: center;
+}
+
+.hero-description-block {
+  font-size: clamp(18px, 2.3vw, 21px);
+  line-height: 1.6;
+  color: var(--ink);
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
+  padding: 0 10px;
+}
+
+/* Section "For whom is it intended?" */
+.hero-audience-label {
+  font-size: clamp(20px, 2.7vw, 24px);
+  font-weight: 800;
+  margin-bottom: 15px;
+  color: var(--ref-olive);
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
+}
+
+.hero-audience-list {
+  font-size: clamp(17px, 2.2vw, 19.5px);
+  line-height: 1.6;
+  color: var(--ink);
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
+  margin-bottom: 40px;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Refined button style to match image 0.PNG */
+.hero .btn {
+  background: var(--ref-olive);
+  color: white;
+  font-family: 'Assistant', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  padding: 18px 45px;
+  border-radius: 50px;
+  box-shadow: 0 8px 20px rgba(108, 127, 83, 0.3);
+  gap: 12px;
+}
+
+.hero .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(108, 127, 83, 0.4);
+}
+
+.hero .btn-leaf-icon {
+  font-size: 1.2em;
+  opacity: 0.9;
+}
+/* ================= /END NEW HERO STYLE ================= */
+
+/* ================= PAIN / CHALLENGE ================= */
+.challenge{
+  text-align:center;
+  padding-bottom: 0; /* הורדת הרווח התחתון של האזור */
+}
+
+.challenge h2{
+  font-size:clamp(26px,3.2vw,38px);
+  max-width:16ch;
+  margin:0 auto 12px;
+  color: var(--ref-olive); /* צבע ירוק תואם לכותרת הראשית */
+}
+
+.challenge .sub{color:var(--ink-soft); max-width:60ch; margin:0 auto 46px; font-size:18px;}
+
+.pain-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+  gap:18px;
+  text-align:center;
+  margin-bottom:0; /* ביטול המרווח התחתון של הגריד */
+}
+
+.pain-card{
+  padding:26px 24px;
+  font-size:21px; /* הגדלת הגופן לחוויית קריאה ברורה */
+  font-weight:700; /* הדגשת הטקסט */
+  color: #2c251e; /* כהות מודגשת */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+}
+
+.pivot{
+  font-family:'Frank Ruhl Libre', serif;
+  font-size:clamp(22px,2.6vw,30px);
+  color:var(--olive-deep);
+}
+
+/* ---------- NEW: HORIZONTAL GALLERY ---------- */
+.custom-gallery-container {
+  grid-column: 1 / -1;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 10px 0;
+}
+
+.custom-gallery-scroll {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 12px 4px 24px 4px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--olive) transparent;
+  -webkit-overflow-scrolling: touch;
+}
+
+.custom-gallery-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.custom-gallery-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-gallery-scroll::-webkit-scrollbar-thumb {
+  background-color: var(--olive);
+  border-radius: 10px;
+}
+
+.custom-gallery-item {
+  flex: 0 0 550px;
+  scroll-snap-align: center;
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--glass-border);
+  transition: transform 0.3s ease;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.custom-gallery-item:hover {
+  transform: scale(1.02);
+}
+
+.custom-gallery-item img {
+  width: 100%;
+  height: 400px;
+  object-fit: contain;
+}
+
+/* ---------- NEW: LIGHTBOX OVERLAY ---------- */
+.custom-lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(63, 56, 44, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.custom-lightbox.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.custom-lightbox-close {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  background: var(--glass-strong);
+  border: 1px solid var(--glass-border);
+  color: var(--ink);
+  font-size: 24px;
+  font-weight: bold;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow);
+  transition: background 0.2s, transform 0.2s;
+  z-index: 10001;
+}
+
+.custom-lightbox-close:hover {
+  background: #fbf8f0;
+  transform: scale(1.05);
+}
+
+.custom-lightbox-content {
+  max-width: 90%;
+  max-height: 85vh;
+  position: relative;
+  transition: transform 0.1s linear;
+  will-change: transform;
+}
+
+.custom-lightbox-content img {
+  max-width: 100%;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 14px;
+  box-shadow: 0 30px 70px rgba(0,0,0,0.5);
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* ================= SOLUTION ================= */
+.solution-inner{
+  display:grid;
+  grid-template-columns:0.9fr 1.1fr;
+  gap:48px;
+  align-items:center;
+  padding:56px;
+}
+.solution-inner h2{
+  font-size:clamp(26px,3vw,36px);
+  margin:0 0 18px;
+  color: var(--ref-olive); /* צבע ירוק תואם לכותרת הראשית */
+}
+.solution-inner p{font-size:19px; color:var(--ink-soft); margin:0 0 16px;}
+.solution-inner p.emph{color:var(--ink); font-weight:600; font-size:20px;}
+
+.ribbon-mini{width:100%; height:auto;}
+
+/* ================= OUTCOMES ================= */
+.outcomes h2{text-align:center; font-size:clamp(26px,3.2vw,38px); margin:0 0 12px;}
+.outcomes .sub{text-align:center; color:var(--ink-soft); max-width:58ch; margin:0 auto 46px; font-size:18px;}
+
+.outcome-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+}
+.outcome-card{
+  padding:26px 18px;
+  text-align:center;
+}
+.outcome-card .icon{
+  width:44px;height:44px;margin:0 auto 14px;
+  color:var(--olive-deep);
+}
+.outcome-card span{font-weight:600; font-size:19.5px;}
+
+/* ================= AUDIENCE ================= */
+.audience h2{text-align:center; font-size:clamp(26px,3.2vw,38px); margin:0 0 46px;}
+
+.audience-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+.audience-card{
+  padding:32px 20px;
+  text-align:center;
+  font-weight:600;
+  font-size:17px;
+}
+.audience-card .emoji{font-size:32px; display:block; margin-bottom:14px;}
+
+/* ================= ABOUT ================= */
+.about-inner{
+  display:grid;
+  grid-template-columns:0.75fr 1.25fr;
+  gap:48px;
+  align-items:center;
+  padding:56px;
+}
+.portrait{
+  aspect-ratio:4/5;
+  border-radius:22px;
+  overflow:hidden;
+}
+.about-inner h3{font-size:26px; margin:0 0 4px;}
+.about-inner .role{color:var(--olive-deep); font-weight:600; margin-bottom:18px; display:block;}
+.about-inner p{color:var(--ink-soft); font-size:20px;}
+
+/* ================= PROCESS ================= */
+.process h2{text-align:center; font-size:clamp(26px,3.2vw,38px); margin:0 0 50px;}
+
+.process-row{
+  display:grid;
+  grid-template-columns:1fr auto 1fr auto 1fr;
+  align-items:center;
+  gap:14px;
+}
+.process-step{
+  padding:30px 20px;
+  text-align:center;
+}
+.process-step .num{
+  font-family:'Frank Ruhl Libre',serif;
+  color:var(--mauve-deep);
+  font-size:15px;
+  letter-spacing:2px;
+  margin-bottom:10px;
+  display:block;
+}
+.process-step h4{margin:0 0 8px; font-size:19px; font-family:'Frank Ruhl Libre',serif;}
+.process-step p{margin:0; color:var(--ink-soft); font-size:18px;}
+
+.arrow{
+  color:var(--olive-deep);
+  font-size:22px;
+}
+
+/* ================= TESTIMONIALS ================= */
+.testimonials h2{text-align:center; font-size:clamp(26px,3.2vw,38px); margin:0 0 46px;}
+
+.t-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+.t-card{
+  padding:30px 26px;
+  font-size:20px;
+}
+.t-card .mark{font-size:34px; color:var(--mauve-deep); font-family:'Frank Ruhl Libre',serif; line-height:0.5; display:block; margin-bottom:14px;}
+
+/* ================= CTA ================= */
+.cta{
+  text-align:center;
+  padding:90px 0 110px;
+}
+.cta-inner{
+  padding:64px 40px;
+  max-width:760px;
+  margin:0 auto;
+}
+.cta-inner h2{font-size:clamp(28px,3.6vw,42px); margin:0 0 16px;}
+.cta-inner p{color:var(--ink-soft); font-size:18px; margin:0 0 32px;}
+
+.contact-row{
+  display:flex;
+  justify-content:center;
+  gap:26px;
+  margin-top:36px;
+  flex-wrap:wrap;
+}
+.contact-row a{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-weight:600;
+  color:var(--olive-deep);
+  text-decoration:none;
+  font-size:15.5px;
+}
+.contact-row a:hover{text-decoration:underline;}
+
+footer{
+  text-align:center;
+  padding:36px 0 50px;
+  color:var(--ink-soft);
+  font-size:14px;
+  background-color: var(--ref-bg);
+}
+
+/* ================= responsive ================= */
+@media (max-width:880px){
+  section{padding:64px 0;}
+  .challenge{padding-bottom: 0;}
+  .pain-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
   }
+  .pain-card {
+    min-height: auto;
+    padding: 20px 16px;
+    font-size: 18px;
+  }
+  .solution-inner{grid-template-columns:1fr; padding:36px 26px; gap:28px;}
+  .solution-inner .ribbon-mini{order:-1; max-width:220px; margin:0 auto;}
+  .outcome-grid{grid-template-columns:repeat(2,1fr);}
+  .audience-grid{grid-template-columns:repeat(2,1fr);}
+  .about-inner{grid-template-columns:1fr; padding:32px 26px;}
+  .portrait{max-width:220px; margin:0 auto;}
+  .process-row{grid-template-columns:1fr; gap:6px;}
+  .arrow{transform:rotate(90deg); margin:0 auto;}
+  .t-grid{grid-template-columns:1fr;}
+  .cta-inner{padding:44px 24px;}
+  .contact-row{flex-direction:column; align-items:center; gap:16px;}
   
-  /* Grid for the central text blocks */
-  .hero-description-grid {
-    display: grid;
+  .custom-gallery-item {flex: 0 0 85vw;}
+  .custom-gallery-item img {height: 280px;}
+
+  /* Hero mobile tweaks */
+  .hero h1 { font-size: 50px; }
+  .hero-title-sep::before, .hero-title-sep::after { width: 50px; }
+  .hero .lead { font-size: 18px; margin-bottom: 25px; }
+  .hero-audience-list { font-size: 15px; }
+  .hero .btn { font-size: 18px; padding: 15px 35px; }
+}
+
+@media (max-width:520px){
+  .wrap{padding:0 18px;}
+  .pain-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
-    max-width: 700px;
-    margin: 0 auto 50px;
-    text-align: center;
-  }
-  
-  .hero-description-block {
-    font-size: clamp(18px, 2.3vw, 21px);
-    line-height: 1.6;
-    color: var(--ink);
-    font-weight: 600;
-    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
-    padding: 0 10px;
-  }
-  
-  /* Section "For whom is it intended?" */
-  .hero-audience-label {
-    font-size: clamp(20px, 2.7vw, 24px);
-    font-weight: 800;
-    margin-bottom: 15px;
-    color: var(--ref-olive);
-    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
-  }
-  
-  .hero-audience-list {
-    font-size: clamp(17px, 2.2vw, 19.5px);
-    line-height: 1.6;
-    color: var(--ink);
-    font-weight: 700;
-    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.9);
-    margin-bottom: 40px;
-    max-width: 650px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  /* Refined button style to match image 0.PNG */
-  .hero .btn {
-    background: var(--ref-olive);
-    color: white;
-    font-family: 'Assistant', sans-serif;
-    font-weight: 600;
-    font-size: 20px;
-    padding: 18px 45px;
-    border-radius: 50px;
-    box-shadow: 0 8px 20px rgba(108, 127, 83, 0.3);
     gap: 12px;
   }
-  
-  .hero .btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(108, 127, 83, 0.4);
-  }
-  
-  .hero .btn-leaf-icon {
-    font-size: 1.2em;
-    opacity: 0.9;
-  }
-
-  /* ================= /END NEW HERO STYLE ================= */
-
-  /* ================= PAIN / CHALLENGE ================= */
-  .challenge{
-    text-align:center;
-  }
-  .challenge h2{
-    font-size:clamp(26px,3.2vw,38px); 
-    max-width:16ch; 
-    margin:0 auto 12px;
-    color: var(--ref-olive); /* צבע ירוק תואם לכותרת הראשית */
-  }
-  .challenge .sub{color:var(--ink-soft); max-width:60ch; margin:0 auto 46px; font-size:18px;}
-  .pain-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
-    gap:18px;
-    text-align:center;
-    margin-bottom:50px;
-  }
-  .pain-card{
-    padding:26px 24px;
-    font-size:21px; /* הגדלת הגופן לחוויית קריאה ברורה */
-    font-weight:700; /* הדגשת הטקסט */
-    color: #2c251e; /* כהות מודגשת */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 250px; /* הוגדל מ-120px ל-250px כדי שהריבועים יתפרסו יותר וימלאו את הרווח */
-  }
-  .pivot{
-    font-family:'Frank Ruhl Libre', serif;
-    font-size:clamp(22px,2.6vw,30px);
-    color:var(--olive-deep);
-  }
-
-  /* ---------- NEW: HORIZONTAL GALLERY ---------- */
-  .custom-gallery-container {
-    grid-column: 1 / -1;
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-    padding: 10px 0;
-  }
-  .custom-gallery-scroll {
-    display: flex;
-    gap: 20px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    padding: 12px 4px 24px 4px;
-    scrollbar-width: thin;
-    scrollbar-color: var(--olive) transparent;
-    -webkit-overflow-scrolling: touch;
-  }
-  .custom-gallery-scroll::-webkit-scrollbar {
-    height: 6px;
-  }
-  .custom-gallery-scroll::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  .custom-gallery-scroll::-webkit-scrollbar-thumb {
-    background-color: var(--olive);
-    border-radius: 10px;
-  }
-  .custom-gallery-item {
-    flex: 0 0 550px;
-    scroll-snap-align: center;
-    border-radius: var(--radius);
-    overflow: hidden;
-    cursor: pointer;
-    box-shadow: var(--shadow);
-    border: 1px solid var(--glass-border);
-    transition: transform 0.3s ease;
-    background: rgba(255, 255, 255, 0.2);
-  }
-  .custom-gallery-item:hover {
-    transform: scale(1.02);
-  }
-  .custom-gallery-item img {
-    width: 100%;
-    height: 400px;
-    object-fit: contain;
-  }
-
-  /* ---------- NEW: LIGHTBOX OVERLAY ---------- */
-  .custom-lightbox {
-    position: fixed;
-    inset: 0;
-    background: rgba(63, 56, 44, 0.88);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.4s ease;
-  }
-  .custom-lightbox.active {
-    opacity: 1;
-    pointer-events: all;
-  }
-  .custom-lightbox-close {
-    position: absolute;
-    top: 24px;
-    left: 24px;
-    background: var(--glass-strong);
-    border: 1px solid var(--glass-border);
-    color: var(--ink);
-    font-size: 24px;
-    font-weight: bold;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: var(--shadow);
-    transition: background 0.2s, transform 0.2s;
-    z-index: 10001;
-  }
-  .custom-lightbox-close:hover {
-    background: #fbf8f0;
-    transform: scale(1.05);
-  }
-  .custom-lightbox-content {
-    max-width: 90%;
-    max-height: 85vh;
-    position: relative;
-    transition: transform 0.1s linear;
-    will-change: transform;
-  }
-  .custom-lightbox-content img {
-    max-width: 100%;
-    max-height: 85vh;
-    object-fit: contain;
-    border-radius: 14px;
-    box-shadow: 0 30px 70px rgba(0,0,0,0.5);
-    user-select: none;
-    -webkit-user-drag: none;
-  }
-
-  /* ================= SOLUTION ================= */
-  .solution-inner{
-    display:grid;
-    grid-template-columns:0.9fr 1.1fr;
-    gap:48px;
-    align-items:center;
-    padding:56px;
-  }
-  .solution-inner h2{
-    font-size:clamp(26px,3vw,36px); 
-    margin:0 0 18px;
-    color: var(--ref-olive); /* צבע ירוק תואם לכותרת הראשית */
-  }
-  .solution-inner p{font-size:19px; color:var(--ink-soft); margin:0 0 16px;}
-  .solution-inner p.emph{color:var(--ink); font-weight:600; font-size:20px;}
-  .ribbon-mini{width:100%; height:auto;}
-
-  /* ================= OUTCOMES ================= */
-  .outcomes h2{text-align:center; font-size:clamp(26px,3.2vw,38px); margin:0 0 12px;}
-  .outcomes .sub{text-align:center; color:var(--ink-soft); max-width:58ch; margin:0 auto 46px; font-size:18px;}
-  .outcome-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:16px;
-  }
-  .outcome-card{
-    padding:26px 18px;
-    text-align:center;
-  }
-  .outcome-card .icon{
-    width:44px;height:44px;margin:0 auto 14px;
-    color:var(--olive-deep);
-  }
-  .outcome-card span{font-weight:600; font-size:19.5px;}
-
-  /* ================= AUDIENCE ================= */
-  .audience h2{text-align:center; font-size:clamp(26px,3.2vw,38px); margin:0 0 46px;}
-  .audience-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
-  }
-  .audience-card{
-    padding:32px 20px;
-    text-align:center;
-    font-weight:600;
-    font-size:17px;
-  }
-  .audience-card .emoji{font-size:32px; display:block; margin-bottom:14px;}
-
-  /* ================= ABOUT ================= */
-  .about-inner{
-    display:grid;
-    grid-template-columns:0.75fr 1.25fr;
-    gap:48px;
-    align-items:center;
-    padding:56px;
-  }
-  .portrait{
-    aspect-ratio:4/5;
-    border-radius:22px;
-    overflow:hidden;
-  }
-  .about-inner h3{font-size:26px; margin:0 0 4px;}
-  .about-inner .role{color:var(--olive-deep); font-weight:600; margin-bottom:18px; display:block;}
-  .about-inner p{color:var(--ink-soft); font-size:20px;}
-
-  /* ================= PROCESS ================= */
-  .process h2{text-align:center; font-size:clamp(26px,3.2vw,38px); margin:0 0 50px;}
-  .process-row{
-    display:grid;
-    grid-template-columns:1fr auto 1fr auto 1fr;
-    align-items:center;
-    gap:14px;
-  }
-  .process-step{
-    padding:30px 20px;
-    text-align:center;
-  }
-  .process-step .num{
-    font-family:'Frank Ruhl Libre',serif;
-    color:var(--mauve-deep);
-    font-size:15px;
-    letter-spacing:2px;
-    margin-bottom:10px;
-    display:block;
-  }
-  .process-step h4{margin:0 0 8px; font-size:19px; font-family:'Frank Ruhl Libre',serif;}
-  .process-step p{margin:0; color:var(--ink-soft); font-size:18px;}
-  .arrow{
-    color:var(--olive-deep);
-    font-size:22px;
-  }
-
-  /* ================= TESTIMONIALS ================= */
-  .testimonials h2{text-align:center; font-size:clamp(26px,3.2vw,38px); margin:0 0 46px;}
-  .t-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
-  }
-  .t-card{
-    padding:30px 26px;
-    font-size:20px;
-  }
-  .t-card .mark{font-size:34px; color:var(--mauve-deep); font-family:'Frank Ruhl Libre',serif; line-height:0.5; display:block; margin-bottom:14px;}
-
-  /* ================= CTA ================= */
-  .cta{
-    text-align:center;
-    padding:90px 0 110px;
-  }
-  .cta-inner{
-    padding:64px 40px;
-    max-width:760px;
-    margin:0 auto;
-  }
-  .cta-inner h2{font-size:clamp(28px,3.6vw,42px); margin:0 0 16px;}
-  .cta-inner p{color:var(--ink-soft); font-size:18px; margin:0 0 32px;}
-  .contact-row{
-    display:flex;
-    justify-content:center;
-    gap:26px;
-    margin-top:36px;
-    flex-wrap:wrap;
-  }
-  .contact-row a{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    font-weight:600;
-    color:var(--olive-deep);
-    text-decoration:none;
-    font-size:15.5px;
-  }
-  .contact-row a:hover{text-decoration:underline;}
-
-  footer{
-    text-align:center;
-    padding:36px 0 50px;
-    color:var(--ink-soft);
-    font-size:14px;
-    background-color: var(--ref-bg);
-  }
-
-  /* ================= responsive ================= */
-  @media (max-width:880px){
-    section{padding:64px 0;}
-    .pain-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
-    .pain-card { min-height: auto; padding: 20px 16px; font-size: 18px; }
-    .solution-inner{grid-template-columns:1fr; padding:36px 26px; gap:28px;}
-    .solution-inner .ribbon-mini{order:-1; max-width:220px; margin:0 auto;}
-    .outcome-grid{grid-template-columns:repeat(2,1fr);}
-    .audience-grid{grid-template-columns:repeat(2,1fr);}
-    .about-inner{grid-template-columns:1fr; padding:32px 26px;}
-    .portrait{max-width:220px; margin:0 auto;}
-    .process-row{grid-template-columns:1fr; gap:6px;}
-    .arrow{transform:rotate(90deg); margin:0 auto;}
-    .t-grid{grid-template-columns:1fr;}
-    .cta-inner{padding:44px 24px;}
-    .contact-row{flex-direction:column; align-items:center; gap:16px;}
-    .custom-gallery-item {flex: 0 0 85vw;}
-    .custom-gallery-item img {height: 280px;}
-    
-    /* Hero mobile tweaks */
-    .hero h1 { font-size: 50px; }
-    .hero-title-sep::before, .hero-title-sep::after { width: 50px; }
-    .hero .lead { font-size: 18px; margin-bottom: 25px; }
-    .hero-audience-list { font-size: 15px; }
-    .hero .btn { font-size: 18px; padding: 15px 35px; }
-  }
-  @media (max-width:520px){
-    .wrap{padding:0 18px;}
-    .pain-grid { grid-template-columns: 1fr; gap: 12px; }
-    .outcome-grid{grid-template-columns:repeat(2,1fr);}
-  }
+  .outcome-grid{grid-template-columns:repeat(2,1fr);}
+}
 </style>
 </head>
 <body>
@@ -626,48 +671,44 @@
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-content reveal">
-    
     <h1>אוריתמיה בקהילת העבודה</h1>
     
     <!-- Title Separator with Leaf -->
     <div class="hero-title-sep">
-        <span class="leaf-icon">🍃</span>
+      <span class="leaf-icon">🍃</span>
     </div>
-    
+
     <p class="lead">טיפוח הצוות והחוסן בקהילה</p>
     
     <!-- Original text blocks rearranged in a grid like ref -->
     <div class="hero-description-grid">
-        <div class="hero-description-block">
-            סדנאות אוריתמיה לבתי ספר ולדורף ולקהילות חינוכיות טיפוליות, המבקשות לטפח קשרים חברתיים, להעמיק את חיי הקהילה ולחזק את עבודת הצוות מתוך חוויה משותפת.
-        </div>
-        <div class="hero-description-block">
-            דרך התנועה המשותפת נוצרים מרחבים של מפגש אנושי, אחריות הדדית ותחושת שייכות – יסודות הכרחיים לקהילה חינוכית בריאה ומתפתחת.
-        </div>
+      <div class="hero-description-block">
+        סדנאות אוריתמיה לבתי ספר ולדורף ולקהילות חינוכיות טיפוליות, המבקשות לטפח קשרים חברתיים, להעמיק את חיי הקהילה ולחזק את עבודת הצוות מתוך חוויה משותפת.
+      </div>
+      <div class="hero-description-block">
+        דרך התנועה המשותפת נוצרים מרחבים של מפגש אנושי, אחריות הדדית ותחושת שייכות – יסודות הכרחיים לקהילה חינוכית בריאה ומתפתחת.
+      </div>
     </div>
-    
+
     <!-- Audience Label -->
     <div class="hero-audience-label">למי מיועדים המפגשים?</div>
-    
+
     <!-- Reusing original lead content but formatted like the reference image list -->
     <div class="hero-audience-list">
-        בתי ספר ולדורף • צוותי חינוך • הנהלות • קהילות חינוכיות • <br>
-        קבוצות המבקשות לטפח את איכות המפגש האנושי בתוכן.
+      בתי ספר ולדורף • צוותי חינוך • הנהלות • קהילות חינוכיות • <br>
+      קבוצות המבקשות לטפח את איכות המפגש האנושי בתוכן.
     </div>
-    
+
     <!-- Original button with new style and leaf icon -->
     <a class="btn" href="#cta">
-        לתיאום שיחת היכרות
-        
+      לתיאום שיחת היכרות
     </a>
-    
   </div>
 </section>
 <!-- END OF NEW HERO SECTION -->
 
 <section class="challenge">
   <div class="wrap">
-    
     <!-- GALLERY MOVED HERE, ABOVE THE TITLE -->
     <div class="custom-gallery-container reveal">
       <div class="custom-gallery-scroll" id="autoGalleryScroll">
@@ -696,7 +737,6 @@
       <div class="pain-card glass reveal">קושי להקשיב באמת זה לזה.</div>
       <div class="pain-card glass reveal">תחושת “כל אחד לעצמו”</div>
       <div class="pain-card glass reveal">רצון לבנות תרבות צוותית חיה ומחוברת</div>
-      
     </div>
   </div>
 </section>
@@ -713,7 +753,6 @@
   <div class="wrap">
     <div class="solution-inner glass reveal">
       <div>
-        
         <h2>אוריתמיה בקהילת העבודה</h2>
         <p>האוריתמיה מאפשרת לראות את מה שפועל בדרך כלל מתחת לפני השטח: את איכות המפגש, את האיזון בין הובלה והיענות, את היחסים בין היחיד לקהילה ואת הכוחות המבקשים להתפתח בתוך הצוות. מתוך החוויה עולות תובנות מעשיות המלוות את עבודת הצוות גם לאחר הסדנה. תנועה פשוטה, תרגילים קבוצתיים ושיח מונחה, הסדנה מאפשרת לצוות להתבונן בדפוסי העבודה שלו בדרך חווייתית ומעשית.<br><br>המשתתפים אינם רק מדברים על שיתוף פעולה - הם חווים אותו בגוף, במרחב ובמפגש עם האחר.</p>
         <p class="emph">אין צורך בניסיון קודם באוריתמיה או בתנועה.</p>
@@ -725,12 +764,12 @@
 
 <section class="outcomes" style="padding-bottom: 40px;">
   <div class="wrap">
-    
     <h2 class="reveal">במהלך הסדנה נתנסה ב:</h2>
-    <div class="glass reveal" style="display: block; width: 100%; max-width: 700px; margin: 0 auto 50px; overflow: hidden; box-shadow: var(--shadow);">
-     <!-- <img src="image 2.jpeg" alt="תרגיל תנועה קבוצתי" style="width: 100%; height: auto; display: block; border-radius: var(--radius); filter: saturate(110%);"> --> 
-    </div>
     
+    <div class="glass reveal" style="display: block; width: 100%; max-width: 700px; margin: 0 auto 50px; overflow: hidden; box-shadow: var(--shadow);">
+      <!-- <img src="image 2.jpeg" alt="תרגיל תנועה קבוצתי" style="width: 100%; height: auto; display: block; border-radius: var(--radius); filter: saturate(110%);"> -->
+    </div>
+
     <div class="outcome-grid">
       <div class="outcome-card glass reveal"><span>הקשבה ונוכחות</span></div>
       <div class="outcome-card glass reveal"><span>יוזמה והובלה</span></div>
@@ -744,7 +783,6 @@
 
 <section class="outcomes">
   <div class="wrap">
-    
     <h2 class="reveal">איכויות שנשארות אחרי הסדנה</h2>
     <p class="sub reveal">חוויה שממשיכה להדהד בעבודת הצוות היומיומית.</p>
     <div class="outcome-grid">
@@ -783,22 +821,17 @@
         <h3>דורון רפאל שי</h3>
         <span class="role">אוריתמיסט, איש חינוך ומנחה קבוצות</span>
         <p>אני מביא שילוב ייחודי של ניסיון חינוכי מעשי, הכשרה אמנותית-תנועתית מעמיקה והבנה אנושית של תהליכי צמיחה והתפתחות. לאורך השנים פעלתי כמחנך בבית ספר ולדורף, גנן, רכז בפנימייה טיפולית, מורה בהכשרת אוריתמיה ומלווה קבוצות חינוכיות טיפוליות.</p>
-        <p>המסע המקצועי שלי עבר דרך לימודי אוריתמיה בשווייץ ובגרמניה, לצד עבודה יומיומית עם ילדים, בני נוער, אנשי חינוך, צוותים וקהילות. שילוב זה מאפשר לי לחבר בין רעיונות חינועיים עמוקים לבין כלים מעשיים של תנועה, נוכחות והקשבה.
-</p>
+        <p>המסע המקצועי שלי עבר דרך לימודי אוריתמיה בשווייץ ובגרמניה, לצד עבודה יומיומית עם ילדים, בני נוער, אנשי חינוך, צוותים וקהילות. שילוב זה מאפשר לי לחבר בין רעיונות חינועיים עמוקים לבין כלים מעשיים של תנועה, נוכחות והקשבה. </p>
         <p>הייחודיות שלי היא ביכולת ליצור מרחבים שבהם אנשים אינם רק לומדים ידע חדש, אלא פוגשים מחדש את היצירתיות והמשמעות בעשייה שלהם. אני עובד עם צוותים חינועיים, מוסדות ולדורף, ארגונים וקהילות המבקשים לחזק את החוסן האנושי, את איכות שיתוף הפעולה ואת הקשר בין האדם לבין שליחותו המקצועית.</p>
-
         <p>הסדנאות והליווי שאני מציע נשענים על ניסיון במרחב האנתרופוסופי והחינוכי, ומותאמים לצרכים הייחודיים של כל ארגון, צוות או קהילה. המפגש בין אוריתמיה, חינוך והתפתחות אנושית יוצר תהליך חי, מעשי ועמוק, המאפשר לאנשים ולמערכות לגלות מחדש את מקורות החיוניות וההשראה שלו.</p>
       </div>
     </div>
   </div>
 </section>
 
-
-
 <section class="process">
   <div class="wrap">
     <h2 class="reveal">איך נראית סדנה</h2>
-    
     <div class="process-row">
       <div class="process-step glass reveal">
         <span class="num">שלב א</span>
@@ -850,7 +883,6 @@
         לתיאום שיחת היכרות ללא התחייבות
         <span class="btn-leaf-icon">🍃</span>
       </a>
-
       <div class="contact-row" id="contact-links">
         <a href="tel:+972587173350" rel="noopener noreferrer">📞 0587173350</a>
         <a href="https://wa.me/972587173350" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
@@ -865,92 +897,104 @@
 </footer>
 
 <script>
-  document.getElementById('year').textContent = new Date().getFullYear();
+document.getElementById('year').textContent = new Date().getFullYear();
 
-  const revealEls = document.querySelectorAll('.reveal');
-  if('IntersectionObserver' in window){
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting){
-          entry.target.classList.add('in');
-          io.unobserve(entry.target);
-        }
-      });
-    }, {threshold:0.12});
-    revealEls.forEach(el=>io.observe(el));
-  } else {
-    revealEls.forEach(el=>el.classList.add('in'));
-  }
-
-  /* ---------- AUTOMATIC GALLERY SCROLL LOGIC ---------- */
-  const galleryScroll = document.getElementById('autoGalleryScroll');
-  let autoScrollInterval;
-
-  function startAutoScroll() {
-    autoScrollInterval = setInterval(() => {
-      if (!galleryScroll) return;
-      
-      const maxScrollLeft = galleryScroll.scrollWidth - galleryScroll.clientWidth;
-      if (Math.abs(galleryScroll.scrollLeft) >= maxScrollLeft - 10) {
-        galleryScroll.scrollTo({ left: 0, behavior: 'smooth' });
-      } else {
-        const itemWidth = galleryScroll.querySelector('.custom-gallery-item').clientWidth + 20;
-        galleryScroll.scrollBy({ left: -itemWidth, behavior: 'smooth' });
+const revealEls = document.querySelectorAll('.reveal');
+if('IntersectionObserver' in window){
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
       }
-    }, 5000); // Moves every 5 seconds (Slowed down from 3s)
-  }
+    });
+  }, {threshold:0.12});
+  revealEls.forEach(el=>io.observe(el));
+} else {
+  revealEls.forEach(el=>el.classList.add('in'));
+}
 
-  function stopAutoScroll() {
-    clearInterval(autoScrollInterval);
-  }
+/* ---------- AUTOMATIC GALLERY SCROLL LOGIC ---------- */
+const galleryScroll = document.getElementById('autoGalleryScroll');
+let autoScrollInterval;
 
-  // Start automatic scrolling and pause it on hover or touch
-  startAutoScroll();
-  galleryScroll.addEventListener('mouseenter', stopAutoScroll);
-  galleryScroll.addEventListener('mouseleave', startAutoScroll);
-  galleryScroll.addEventListener('touchstart', stopAutoScroll, { passive: true });
-  galleryScroll.addEventListener('touchend', startAutoScroll, { passive: true });
-
-  /* ---------- LIGHTBOX LOGIC WITH SWIPE TO CLOSE ---------- */
-  const lightbox = document.getElementById('customLightbox');
-  const lightboxImg = document.getElementById('lightboxImg');
-  const lightboxContent = document.getElementById('lightboxContent');
-  
-  let touchStartY = 0;
-  let touchEndY = 0;
-
-  function openLightbox(src) {
-    stopAutoScroll();
-    lightboxImg.src = src;
-    lightbox.classList.add('active');
-    document.body.style.overflow = 'hidden'; // Prevent page scroll when open
-  }
-
-  function closeLightbox() {
-    lightbox.classList.remove('active');
-    document.body.style.overflow = '';
-    startAutoScroll();
-    setTimeout(() => {
-      lightboxImg.src = '';
-      lightboxContent.style.transform = 'translateY(0)';
-    }, 400);
-  }
-
-  // Close when clicking overlay backdrop directly
-  lightbox.addEventListener('click', function(e) {
-    if (e.target === lightbox) {
-      closeLightbox();
+function startAutoScroll() {
+  autoScrollInterval = setInterval(() => {
+    if (!galleryScroll) return;
+    const maxScrollLeft = galleryScroll.scrollWidth - galleryScroll.clientWidth;
+    if (Math.abs(galleryScroll.scrollLeft) >= maxScrollLeft - 10) {
+      galleryScroll.scrollTo({ left: 0, behavior: 'smooth' });
+    } else {
+      const itemWidth = galleryScroll.querySelector('.custom-gallery-item').clientWidth + 20;
+      galleryScroll.scrollBy({ left: -itemWidth, behavior: 'smooth' });
     }
-  });
+  }, 5000); // Moves every 5 seconds (Slowed down from 3s)
+}
 
-  // Swipe handling for the lightbox content
-  lightboxContent.addEventListener('touchstart', function(e) {
-    touchStartY = e.changedTouches[0].screenY;
-  }, { passive: true });
+function stopAutoScroll() {
+  clearInterval(autoScrollInterval);
+}
 
-  lightboxContent.addEventListener('touchmove', function(e) {
-    // let currentY = e.changedTouches[0].screenY; // No need for this in this reduced snippet
-  }, { passive: true });
+// Start automatic scrolling and pause it on hover or touch
+startAutoScroll();
+galleryScroll.addEventListener('mouseenter', stopAutoScroll);
+galleryScroll.addEventListener('mouseleave', startAutoScroll);
+galleryScroll.addEventListener('touchstart', stopAutoScroll, { passive: true });
+galleryScroll.addEventListener('touchend', startAutoScroll, { passive: true });
+
+/* ---------- LIGHTBOX LOGIC WITH SWIPE TO CLOSE ---------- */
+const lightbox = document.getElementById('customLightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+const lightboxContent = document.getElementById('lightboxContent');
+let touchStartY = 0;
+let touchEndY = 0;
+
+function openLightbox(src) {
+  stopAutoScroll();
+  lightboxImg.src = src;
+  lightbox.classList.add('active');
+  document.body.style.overflow = 'hidden'; // Prevent page scroll when open
+}
+
+function closeLightbox() {
+  lightbox.classList.remove('active');
+  document.body.style.overflow = '';
+  startAutoScroll();
+  setTimeout(() => {
+    lightboxImg.src = '';
+    lightboxContent.style.transform = 'translateY(0)';
+  }, 400);
+}
+
+// Close when clicking overlay backdrop directly
+lightbox.addEventListener('click', function(e) {
+  if (e.target === lightbox) {
+    closeLightbox();
+  }
+});
+
+// Swipe handling for the lightbox content
+lightboxContent.addEventListener('touchstart', function(e) {
+  touchStartY = e.changedTouches[0].screenY;
+}, { passive: true });
+
+lightboxContent.addEventListener('touchmove', function(e) {
+  let currentY = e.changedTouches[0].screenY;
+  let diffY = currentY - touchStartY;
+  if (diffY > 0) {
+    lightboxContent.style.transform = `translateY(${diffY}px)`;
+  }
+}, { passive: true });
+
+lightboxContent.addEventListener('touchend', function(e) {
+  touchEndY = e.changedTouches[0].screenY;
+  if (touchEndY - touchStartY > 100) {
+    closeLightbox();
+  } else {
+    lightboxContent.style.transform = 'translateY(0)';
+  }
+}, { passive: true });
 </script>
+
 </body>
 </html>
