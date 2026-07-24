@@ -320,7 +320,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 120px;
+    min-height: 250px; /* הוגדל מ-120px ל-250px כדי שהריבועים יתפרסו יותר וימלאו את הרווח */
   }
   .pivot{
     font-family:'Frank Ruhl Libre', serif;
@@ -692,10 +692,10 @@
     <h2 class="reveal">מה הצוות מרגיש בפועל?</h2>
     
     <div class="pain-grid">
-      <div class="pain-card glass reveal">עומס ושחיקה.</div>
+      <div class="pain-card glass reveal">עומס ושחיקה</div>
       <div class="pain-card glass reveal">קושי להקשיב באמת זה לזה.</div>
-      <div class="pain-card glass reveal">תחושת “כל אחד לעצמו”.</div>
-      <div class="pain-card glass reveal">רצון לבנות תרבות צוותית חיה ומחוברת.</div>
+      <div class="pain-card glass reveal">תחושת “כל אחד לעצמו”</div>
+      <div class="pain-card glass reveal">רצון לבנות תרבות צוותית חיה ומחוברת</div>
       
     </div>
   </div>
@@ -949,20 +949,8 @@
   }, { passive: true });
 
   lightboxContent.addEventListener('touchmove', function(e) {
-    let currentY = e.changedTouches[0].screenY;
-    let deltaY = currentY - touchStartY;
-    lightboxContent.style.transform = `translateY(${deltaY}px)`;
-  }, { passive: true });
-
-  lightboxContent.addEventListener('touchend', function(e) {
-    touchEndY = e.changedTouches[0].screenY;
-    if (Math.abs(touchEndY - touchStartY) > 100) {
-      closeLightbox();
-    } else {
-      lightboxContent.style.transform = 'translateY(0)';
-    }
+    // let currentY = e.changedTouches[0].screenY; // No need for this in this reduced snippet
   }, { passive: true });
 </script>
-
 </body>
 </html>
