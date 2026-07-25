@@ -1,5 +1,24 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
+
+
+<script>
+  // גורם לעמוד להיפתח תמיד מלמעלה בטעינה ראשונית / ריענון
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+  window.addEventListener('beforeunload', () => {
+    window.scrollTo(0, 0);
+  });
+  window.scrollTo(0, 0);
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // שאר הקוד שלך...
+</script>
+
+
+  
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
