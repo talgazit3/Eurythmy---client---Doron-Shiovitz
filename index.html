@@ -834,6 +834,26 @@ footer{
   </div>
 </section>
 
+<!-- SECTION: INSTITUTIONS LOGOS -->
+<section class="institutions">
+  <div class="wrap">
+    <div class="institutions-grid reveal">
+      <div class="institution-logo-item">
+        <img src="logo1.jpeg" alt="Eurythmeum CH">
+      </div>
+      <div class="institution-logo-item">
+        <img src="logo2.jpeg" alt="Eurythmeum Stuttgart">
+      </div>
+      <div class="institution-logo-item">
+        <img src="logo3.jpeg" alt="Freie Hochschule Stuttgart">
+      </div>
+      <div class="institution-logo-item">
+        <img src="logo4.jpeg" alt="Goetheanum">
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- <section class="process">
   <div class="wrap">
     <h2 class="reveal">איך נראית סדנה</h2>
@@ -878,26 +898,6 @@ footer{
     </div>
   </div>
 </section>-->
-
-<!-- SECTION: INSTITUTIONS LOGOS -->
-<section class="institutions">
-  <div class="wrap">
-    <div class="institutions-grid reveal">
-      <div class="institution-logo-item">
-        <img src="logo1.jpeg" alt="Eurythmeum CH">
-      </div>
-      <div class="institution-logo-item">
-        <img src="logo2.jpeg" alt="Eurythmeum Stuttgart">
-      </div>
-      <div class="institution-logo-item">
-        <img src="logo3.jpeg" alt="Freie Hochschule Stuttgart">
-      </div>
-      <div class="institution-logo-item">
-        <img src="logo4.jpeg" alt="Goetheanum">
-      </div>
-    </div>
-  </div>
-</section>
 
 <section class="cta" id="cta">
   <div class="wrap">
@@ -980,49 +980,15 @@ footer{
     stopAutoScroll();
     lightboxImg.src = src;
     lightbox.classList.add('active');
-    document.body.style.overflow = 'hidden'; // Prevent page scroll when open
+    document.body.style.overflow = 'hidden';
   }
 
   function closeLightbox() {
     lightbox.classList.remove('active');
     document.body.style.overflow = '';
+    lightboxContent.style.transform = '';
     startAutoScroll();
-    setTimeout(() => {
-      lightboxImg.src = '';
-      lightboxContent.style.transform = 'translateY(0)';
-    }, 400);
   }
-
-  // Close when clicking overlay backdrop directly
-  lightbox.addEventListener('click', function(e) {
-    if (e.target === lightbox) {
-      closeLightbox();
-    }
-  });
-
-  // Swipe handling for the lightbox content
-  lightboxContent.addEventListener('touchstart', function(e) {
-    touchStartY = e.changedTouches[0].screenY;
-  }, { passive: true });
-
-  lightboxContent.addEventListener('touchmove', function(e) {
-    let currentY = e.changedTouches[0].screenY;
-    let diffY = currentY - touchStartY;
-    
-    if (diffY > 0) {
-      lightboxContent.style.transform = `translateY(${diffY}px)`;
-    }
-  }, { passive: true });
-
-  lightboxContent.addEventListener('touchend', function(e) {
-    touchEndY = e.changedTouches[0].screenY;
-    if (touchEndY - touchStartY > 100) {
-      closeLightbox();
-    } else {
-      lightboxContent.style.transform = 'translateY(0)';
-    }
-  }, { passive: true });
 </script>
-
 </body>
 </html>
