@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 
-
 <script>
   // גורם לעמוד להיפתח תמיד מלמעלה בטעינה ראשונית / ריענון
   if ('scrollRestoration' in history) {
@@ -11,14 +10,8 @@
     window.scrollTo(0, 0);
   });
   window.scrollTo(0, 0);
-
-  //document.getElementById('year').textContent = new Date().getFullYear();
-
-  // שאר הקוד שלך...
 </script>
 
-
-  
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -147,7 +140,7 @@ section{
 }
 .reveal.in{opacity:1; transform:translateY(0);}
 
-/* ================= NEW HERO STYLE (IMAGE 0.PNG) ================= */
+/* ================= NEW HERO STYLE ================= */
 .hero{
   padding: 0;
   min-height:100vh;
@@ -159,22 +152,20 @@ section{
   overflow: hidden;
 }
 
-/* Background image layer */
-/* התמונה הנקייה של מסך הפתיחה */
 .hero-bg {
   position: absolute;
   inset: 0;
-  background-image: url('image8.jpg'); /* עודכן ל-image8.jpg */
+  background-image: url('image8.jpg');
   background-size: cover;
   background-position: center;
   background-attachment: scroll;
-  filter: blur(2px) opacity(0.7); /* טשטוש קל ושקיפות שמתאימה לקריאות הטקסט */
+  filter: blur(2px) opacity(0.7);
   z-index: 1;
 }
 
 .hero-content {
   position: relative;
-  z-index: 2; /* above the background image */
+  z-index: 2;
   max-width: 900px;
   width: 100%;
   margin: 0 auto;
@@ -184,14 +175,13 @@ section{
 }
 
 .hero h1 {
-  font-size: clamp(48px, 8vw, 90px); /* Very large title */
+  font-size: clamp(48px, 8vw, 90px);
   color: var(--ref-olive);
   font-weight: 700;
   margin: 0 0 10px;
   line-height: 1;
 }
 
-/* Decorative leaf element below H1 */
 .hero-title-sep {
   display: block;
   width: 100%;
@@ -203,7 +193,6 @@ section{
   margin-bottom: 30px;
 }
 
-/* Fallback if SVG is complex - use simple visual separator */
 .hero-title-sep::before, .hero-title-sep::after {
   content: '';
   display: inline-block;
@@ -228,7 +217,6 @@ section{
   text-shadow: 0 1px 3px rgba(255,255,255,0.8);
 }
 
-/* Grid for the central text blocks */
 .hero-description-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -247,7 +235,6 @@ section{
   padding: 0 10px;
 }
 
-/* Section "For whom is it intended?" */
 .hero-audience-label {
   font-size: clamp(20px, 2.7vw, 24px);
   font-weight: 800;
@@ -268,7 +255,6 @@ section{
   margin-right: auto;
 }
 
-/* Refined button style to match image 0.PNG */
 .hero .btn {
   background: var(--ref-olive);
   color: white;
@@ -290,18 +276,17 @@ section{
   font-size: 1.2em;
   opacity: 0.9;
 }
-/* ================= /END NEW HERO STYLE ================= */
 
 /* ================= PAIN / CHALLENGE ================= */
 .challenge{
   text-align:center;
-  padding-bottom: 0; /* הורדת הרווח התחתון של האזור */
+  padding-bottom: 0;
 }
 .challenge h2{
   font-size:clamp(26px,3.2vw,38px);
   max-width:16ch;
   margin:0 auto 12px;
-  color: var(--ref-olive); /* צבע ירוק תואם לכותרת הראשית */
+  color: var(--ref-olive);
 }
 .challenge .sub{color:var(--ink-soft); max-width:60ch; margin:0 auto 46px; font-size:18px;}
 
@@ -310,13 +295,13 @@ section{
   grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
   gap:18px;
   text-align:center;
-  margin-bottom:0; /* ביטול המרווח התחתון של הגריד */
+  margin-bottom:0;
 }
 .pain-card{
   padding:26px 24px;
-  font-size:21px; /* הגדלת הגופן לחוויית קריאה ברורה */
-  font-weight:700; /* הדגשת הטקסט */
-  color: #2c251e; /* כהות מודגשת */
+  font-size:21px;
+  font-weight:700;
+  color: #2c251e;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -328,7 +313,7 @@ section{
   color:var(--olive-deep);
 }
 
-/* ---------- NEW: HORIZONTAL GALLERY ---------- */
+/* ---------- HORIZONTAL GALLERY ---------- */
 .custom-gallery-container {
   grid-column: 1 / -1;
   width: 100%;
@@ -384,7 +369,7 @@ section{
   object-fit: contain;
 }
 
-/* ---------- NEW: LIGHTBOX OVERLAY ---------- */
+/* ---------- LIGHTBOX OVERLAY ---------- */
 .custom-lightbox {
   position: fixed;
   inset: 0;
@@ -460,8 +445,8 @@ section{
 .solution-inner h2{
   font-size:clamp(26px,3vw,36px);
   margin:0 0 18px;
-  color: var(--ref-olive); /* צבע ירוק תואם לכותרת הראשית */
-  text-align: center; /* מירכוז הכותרת */
+  color: var(--ref-olive);
+  text-align: center;
 }
 .solution-inner p{font-size:19px; color:var(--ink-soft); margin:0 0 16px;}
 .solution-inner p.emph{color:var(--ink); font-weight:600; font-size:20px;}
@@ -556,7 +541,7 @@ section{
 }
 .t-card .mark{font-size:34px; color:var(--mauve-deep); font-family:'Frank Ruhl Libre',serif; line-height:0.5; display:block; margin-bottom:14px;}
 
-/* ================= INSTITUTIONS LOGOS ================= */
+/* ================= INSTITUTIONS LOGOS (UPDATED) ================= */
 .institutions{
   padding: 40px 0 20px;
   text-align: center;
@@ -570,7 +555,7 @@ section{
   margin-top: 20px;
 }
 .institution-logo-item{
-  padding: 24px 32px;
+  padding: 12px 16px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -582,15 +567,15 @@ section{
   border-radius: 26px;
   box-shadow: 0 10px 25px -10px rgba(95,80,50,0.15);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
 }
 .institution-logo-item:hover{
   transform: translateY(-3px);
   box-shadow: 0 15px 30px -10px rgba(95,80,50,0.25);
 }
 .institution-logo-item img{
-  max-height: 100px;
-  max-width: 100%;
-  width: auto;
+  width: 90%;
+  max-height: 110px;
   object-fit: contain;
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.05));
 }
@@ -660,14 +645,13 @@ footer{
   .arrow{transform:rotate(90deg); margin:0 auto;}
   .t-grid{grid-template-columns:1fr;}
   .institutions-grid{gap: 20px;}
-  .institution-logo-item{padding: 16px 20px; min-height: 100px;}
-  .institution-logo-item img{max-height: 70px;}
+  .institution-logo-item{padding: 12px 14px; min-height: 100px;}
+  .institution-logo-item img{max-height: 80px;}
   .cta-inner{padding:44px 24px;}
   .contact-row{flex-direction:column; align-items:center; gap:16px;}
   .custom-gallery-item {flex: 0 0 85vw;}
   .custom-gallery-item img {height: 280px;}
 
-  /* Hero mobile tweaks */
   .hero h1 { font-size: 50px; }
   .hero-title-sep::before, .hero-title-sep::after { width: 50px; }
   .hero .lead { font-size: 18px; margin-bottom: 25px; }
@@ -683,8 +667,8 @@ footer{
   }
   .outcome-grid{grid-template-columns:repeat(2,1fr);}
   .institutions-grid{display: flex; flex-direction: column;}
-  .institution-logo-item{padding: 14px 16px; min-height: 80px; width: 100%;}
-  .institution-logo-item img{max-height: 55px;}
+  .institution-logo-item{padding: 10px 12px; min-height: 80px; width: 100%;}
+  .institution-logo-item img{max-height: 65px;}
 }
 </style>
 </head>
@@ -695,20 +679,18 @@ footer{
 <div class="blob b2"></div>
 <div class="blob b3"></div>
 
-<!-- NEW HERO SECTION REPLACED HERE TO MATCH IMAGE 0.PNG -->
+<!-- HERO SECTION -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-content reveal">
     <h1>אוריתמיה בקהילת העבודה</h1>
     
-    <!-- Title Separator with Leaf -->
     <div class="hero-title-sep">
       <span class="leaf-icon">🍃</span>
     </div>
 
     <p class="lead">טיפוח הצוות והחוסן בקהילה</p>
 
-    <!-- Original text blocks rearranged in a grid like ref -->
     <div class="hero-description-grid">
       <div class="hero-description-block">
         סדנאות אוריתמיה לבתי ספר ולדורף ולקהילות חינוכיות טיפוליות, המבקשות לטפח קשרים חברתיים, להעמיק את חיי הקהילה ולחזק את עבודת הצוות מתוך חוויה משותפת.
@@ -718,26 +700,21 @@ footer{
       </div>
     </div>
 
-    <!-- Audience Label -->
     <div class="hero-audience-label">למי מיועדים המפגשים?</div>
 
-    <!-- Reusing original lead content but formatted like the reference image list -->
     <div class="hero-audience-list">
       בתי ספר ולדורף • צוותי חינוך • קהילות חינוכיות טיפוליות <br>
       קבוצות המבקשות לטפח את איכות המפגש האנושי בתוכן.
     </div>
 
-    <!-- Original button with new style and leaf icon -->
     <a class="btn" href="#cta">
       לתיאום שיחת היכרות
     </a>
   </div>
 </section>
-<!-- END OF NEW HERO SECTION -->
 
 <section class="challenge">
   <div class="wrap">
-    <!-- GALLERY MOVED HERE, ABOVE THE TITLE -->
     <div class="custom-gallery-container reveal">
       <div class="custom-gallery-scroll" id="autoGalleryScroll">
         <div class="custom-gallery-item" onclick="openLightbox('image1.jpeg')">
@@ -762,7 +739,6 @@ footer{
     
     <div class="pain-grid">
       <div class="pain-card glass reveal">עומס ושחיקה</div>
-      <!-- <div class="pain-card glass reveal">קושי להקשיב באמת זה לזה.</div> -->
       <div class="pain-card glass reveal">תחושת “כל אחד לעצמו”</div>
       <div class="pain-card glass reveal">רצון לבנות תרבות צוותית חיה ומחוברת</div>
     </div>
@@ -795,7 +771,6 @@ footer{
     <h2 class="reveal">במהלך הסדנה נתנסה ב:</h2>
     
     <div class="glass reveal" style="display: block; width: 100%; max-width: 700px; margin: 0 auto 50px; overflow: hidden; box-shadow: var(--shadow);">
-      <!-- <img src="image 2.jpeg" alt="תרגיל תנועה קבוצתי" style="width: 100%; height: auto; display: block; border-radius: var(--radius); filter: saturate(110%);"> -->
     </div>
 
     <div class="outcome-grid">
@@ -808,24 +783,6 @@ footer{
     </div>
   </div>
 </section>
-
-<section class="outcomes"><!--
-  <div class="wrap">
-    <h2 class="reveal">איכויות שנשארות אחרי הסדנה</h2>
-    <p class="sub reveal">חוויה שממשיכה להדהד בעבודת הצוות היומיומית.</p>
-    
-    <div class="outcome-grid">
-      <div class="outcome-card glass reveal"><span>✔️ הקשבה עמוקה</span></div>
-      <div class="outcome-card glass reveal"><span>✔️ אמון בין אנשי הצוות</span></div>
-      <div class="outcome-card glass reveal"><span>✔️ גמישות מול שינוי</span></div>
-      <div class="outcome-card glass reveal"><span>✔️ תקשורת בריאה</span></div>
-      <div class="outcome-card glass reveal"><span>✔️ שיתוף פעולה</span></div>
-      <div class="outcome-card glass reveal"><span>✔️ מנהיגות משתפת</span></div>
-      <div class="outcome-card glass reveal"><span>✔️ נוכחות</span></div>
-      <div class="outcome-card glass reveal"><span>✔️ חיזוק הקהילה</span></div>
-    </div>
-  </div>
-</section>-->
 
 <section class="audience">
   <div class="wrap">
@@ -877,31 +834,6 @@ footer{
     </div>
   </div>
 </section>
-
-<!-- <section class="process">
-  <div class="wrap">
-    <h2 class="reveal">איך נראית סדנה</h2>
-    <div class="process-row">
-      <div class="process-step glass reveal">
-        <span class="num">שלב א</span>
-        <h4>היכרות</h4>
-        <p>יצירת קרקע בטוחה למפגש.</p>
-      </div>
-      <div class="arrow">←</div>
-      <div class="process-step glass reveal">
-        <span class="num">שלב ב</span>
-        <h4>תרגילי תנועה משותפים</h4>
-        <p>חוויה משותפת של המרחב.</p>
-      </div>
-      <div class="arrow">←</div>
-      <div class="process-step glass reveal">
-        <span class="num">שלב ג</span>
-        <h4>עיבוד והשלכה</h4>
-        <p>חיבור החוויה לחיי העבודה היומיומית.</p>
-      </div>
-    </div>
-  </div>
-</section>-->
 
 <section class="testimonials">
   <div class="wrap">
@@ -979,26 +911,23 @@ footer{
         const itemWidth = galleryScroll.querySelector('.custom-gallery-item').clientWidth + 20;
         galleryScroll.scrollBy({ left: -itemWidth, behavior: 'smooth' });
       }
-    }, 5000); // Moves every 5 seconds (Slowed down from 3s)
+    }, 5000);
   }
 
   function stopAutoScroll() {
     clearInterval(autoScrollInterval);
   }
 
-  // Start automatic scrolling and pause it on hover or touch
   startAutoScroll();
   galleryScroll.addEventListener('mouseenter', stopAutoScroll);
   galleryScroll.addEventListener('mouseleave', startAutoScroll);
   galleryScroll.addEventListener('touchstart', stopAutoScroll, { passive: true });
   galleryScroll.addEventListener('touchend', startAutoScroll, { passive: true });
 
-  /* ---------- LIGHTBOX LOGIC WITH SWIPE TO CLOSE ---------- */
+  /* ---------- LIGHTBOX LOGIC ---------- */
   const lightbox = document.getElementById('customLightbox');
   const lightboxImg = document.getElementById('lightboxImg');
   const lightboxContent = document.getElementById('lightboxContent');
-  let touchStartY = 0;
-  let touchEndY = 0;
 
   function openLightbox(src) {
     stopAutoScroll();
