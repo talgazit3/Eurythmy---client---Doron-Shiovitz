@@ -593,6 +593,11 @@ section{
   object-fit: contain;
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.05));
 }
+/* הגדלת הלוגואים הספציפיים שסומנו */
+.institutions-grid .institution-logo-item:nth-child(3) img,
+.institutions-grid .institution-logo-item:nth-child(4) img {
+  max-height: 220px; /* הגדלה מ-160px ל-220px */
+}
 
 /* ================= CTA ================= */
 .cta{
@@ -657,6 +662,11 @@ footer{
   .institutions-grid{gap: 20px;}
   .institution-logo-item{padding: 20px 28px; min-height: 140px;}
   .institution-logo-item img{max-height: 100px;}
+  /* התאמת הגודל המוגדל גם במובייל */
+  .institutions-grid .institution-logo-item:nth-child(3) img,
+  .institutions-grid .institution-logo-item:nth-child(4) img {
+    max-height: 140px; /* הגדלה מ-100px ל-140px במובייל */
+  }
   .cta-inner{padding:44px 24px;}
   .contact-row{flex-direction:column; align-items:center; gap:16px;}
   .custom-gallery-item {flex: 0 0 85vw;}
@@ -680,6 +690,11 @@ footer{
   .institutions-grid{display: grid; grid-template-columns: repeat(2, 1fr);}
   .institution-logo-item{padding: 16px 18px; min-height: 110px;}
   .institution-logo-item img{max-height: 80px;}
+  /* התאמת הגודל המוגדל גם במסכים קטנים מאוד */
+  .institutions-grid .institution-logo-item:nth-child(3) img,
+  .institutions-grid .institution-logo-item:nth-child(4) img {
+    max-height: 110px; /* הגדלה מ-80px ל-110px במסכים קטנים */
+  }
 }
 </style>
 </head>
@@ -989,25 +1004,3 @@ footer{
   galleryScroll.addEventListener('touchend', startAutoScroll, { passive: true });
 
   /* ---------- LIGHTBOX LOGIC WITH SWIPE TO CLOSE ---------- */
-  const lightbox = document.getElementById('customLightbox');
-  const lightboxImg = document.getElementById('lightboxImg');
-  const lightboxContent = document.getElementById('lightboxContent');
-  let touchStartY = 0;
-  let touchEndY = 0;
-
-  function openLightbox(src) {
-    stopAutoScroll();
-    lightboxImg.src = src;
-    lightbox.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeLightbox() {
-    lightbox.classList.remove('active');
-    document.body.style.overflow = '';
-    lightboxContent.style.transform = '';
-    startAutoScroll();
-  }
-</script>
-</body>
-</html>
