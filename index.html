@@ -452,6 +452,32 @@ section{
 .solution-inner p.emph{color:var(--ink); font-weight:600; font-size:20px;}
 .ribbon-mini{width:100%; height:auto;}
 
+/* ================= FEATURED FLYER CARD ================= */
+.featured-flyer-card {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto 40px;
+  padding: 0;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.featured-flyer-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 25px 70px -15px rgba(95,80,50,0.45);
+}
+
+.featured-flyer-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0;
+  object-fit: contain;
+}
+
 /* ================= OUTCOMES ================= */
 .outcomes h2{text-align:center; font-size:clamp(26px,3.2vw,38px); margin:0 0 12px;}
 .outcomes .sub{text-align:center; color:var(--ink-soft); max-width:58ch; margin:0 auto 46px; font-size:18px;}
@@ -657,6 +683,19 @@ footer{
   .hero .lead { font-size: 18px; margin-bottom: 25px; }
   .hero-audience-list { font-size: 15px; }
   .hero .btn { font-size: 18px; padding: 15px 35px; }
+  
+  .featured-flyer-card {
+    width: calc(100% + 36px);
+    margin-right: -18px;
+    margin-left: -18px;
+    padding: 0;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+  .featured-flyer-img {
+    border-radius: 0;
+  }
 }
 
 @media (max-width:520px){
@@ -768,13 +807,12 @@ footer{
 
 <section class="outcomes" style="padding-bottom: 40px;">
   <div class="wrap">
-    <!-- NEW: Image placed in the orange-marked area -->
-    <img src="image6.jpeg" alt="שיתוף פעולה בסדנה" style="width: 100%; max-width: 180px; margin: 0 auto 30px; display: block; border-radius: var(--radius);">
-    
-    <h2 class="reveal">במהלך הסדנה נתנסה ב:</h2>
-    
-    <div class="glass reveal" style="display: block; width: 100%; max-width: 700px; margin: 0 auto 50px; overflow: hidden; box-shadow: var(--shadow);">
+    <!-- FEATURED CARD (FLYER UNIT) -->
+    <div class="featured-flyer-card glass reveal" onclick="openLightbox('image6.jpeg')">
+      <img class="featured-flyer-img" src="image6.jpeg" alt="אוריתמיה במרחב העבודה - כרזת הסדנה">
     </div>
+
+    <h2 class="reveal">במהלך הסדנה נתנסה ב:</h2>
 
     <div class="outcome-grid">
       <div class="outcome-card glass reveal"><span>הקשבה ונוכחות</span></div>
