@@ -290,23 +290,30 @@ section{
 }
 .challenge .sub{color:var(--ink-soft); max-width:60ch; margin:0 auto 46px; font-size:18px;}
 
-.pain-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
-  gap:18px;
-  text-align:center;
-  margin-bottom:0;
-}
-.pain-card{
-  padding:26px 24px;
-  font-size:21px;
-  font-weight:700;
+.single-pain-card{
+  padding: 32px 24px;
+  font-size: 20px;
+  font-weight: 700;
   color: #2c251e;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 120px;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.8;
 }
+
+.single-pain-card ul{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.single-pain-card li{
+  margin-bottom: 12px;
+}
+
+.single-pain-card li:last-child{
+  margin-bottom: 0;
+}
+
 .pivot{
   font-family:'Frank Ruhl Libre', serif;
   font-size:clamp(22px,2.6vw,30px);
@@ -652,13 +659,8 @@ footer{
 @media (max-width:880px){
   section{padding:64px 0;}
   .challenge{padding-bottom: 0;}
-  .pain-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
-  }
-  .pain-card {
-    min-height: auto;
-    padding: 20px 16px;
+  .single-pain-card {
+    padding: 24px 18px;
     font-size: 18px;
   }
   .solution-inner{grid-template-columns:1fr; padding:36px 26px; gap:28px;}
@@ -700,10 +702,6 @@ footer{
 
 @media (max-width:520px){
   .wrap{padding:0 18px;}
-  .pain-grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
   .outcome-grid{grid-template-columns:repeat(2,1fr);}
   .institutions-grid{display: flex; flex-direction: column;}
   .institution-logo-item{padding: 10px 12px; min-height: 80px; width: 100%;}
@@ -768,7 +766,7 @@ footer{
         <div class="custom-gallery-item" onclick="openLightbox('image8.jpg')">
           <img src="image8.jpg" alt="עבודה עם כדורי נחושת בזוגות">
         </div>
-       <!--- <div class="custom-gallery-item" onclick="openLightbox('image6.jpeg')">
+        <!--- <div class="custom-gallery-item" onclick="openLightbox('image6.jpeg')">
           <img src="image6.jpeg" alt="שיתוף פעולה קבוצתי קרוב">--->
         </div>
       </div>
@@ -776,10 +774,12 @@ footer{
 
     <h2 class="reveal">מה הצוות מרגיש בפועל?</h2>
     
-    <div class="pain-grid">
-      <div class="pain-card glass reveal">עומס ושחיקה</div>
-      <div class="pain-card glass reveal">תחושת “כל אחד לעצמו”</div>
-      <div class="pain-card glass reveal">רצון לבנות תרבות צוותית חיה ומחוברת</div>
+    <div class="single-pain-card glass reveal">
+      <ul>
+        <li>עומס ושחיקה</li>
+        <li>תחושת “כל אחד לעצמו”</li>
+        <li>רצון לבנות תרבות צוותית חיה ומחוברת</li>
+      </ul>
     </div>
   </div>
 </section>
